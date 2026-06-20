@@ -1,230 +1,321 @@
-'use client'
+from pathlib import Path
 
-import { useGLTF } from '@react-three/drei'
-import { useMemo, useRef, useEffect } from 'react'
-import { useFrame } from '@react-three/fiber'
-import * as THREE from 'three'
+html = r'''<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Star Seed V2 — Signal Orb MVP</title>
+  <style>
+    :root{
+      --bg:#03040d;
+      --ink:#f2f4ff;
+      --muted:#aeb5dd;
+      --panel:rgba(11,14,35,.78);
+      --line:rgba(173,180,255,.24);
+      --violet:#9b7cff;
+      --cyan:#8ff7ff;
+      --green:#8cffc1;
+      --blue:#86b7ff;
+      --purple:#c79cff;
+      --gold:#ffd985;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 50% 42%,#17164a 0%,#080918 36%,#02030a 100%);color:var(--ink);overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.45;background-image:radial-gradient(circle at 12% 16%,#fff 0 1px,transparent 1px),radial-gradient(circle at 23% 76%,#fff 0 1px,transparent 1px),radial-gradient(circle at 64% 11%,#fff 0 1px,transparent 1px),radial-gradient(circle at 81% 59%,#fff 0 1px,transparent 1px),radial-gradient(circle at 47% 88%,#fff 0 1px,transparent 1px);background-size:190px 190px,260px 260px,310px 310px,230px 230px,280px 280px}
+    .app{min-height:100vh;padding:22px;display:grid;grid-template-columns:300px minmax(620px,1fr) 340px;gap:18px}
+    header{grid-column:1/4;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:24px;background:linear-gradient(90deg,rgba(8,10,27,.9),rgba(19,20,57,.7));padding:14px 18px;backdrop-filter:blur(18px);box-shadow:0 30px 100px rgba(0,0,0,.45)}
+    .brand{display:flex;gap:13px;align-items:center}
+    .mark{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle,#fff 0 7%,#d9ccff 9% 18%,#a88fff 34%,#6654ff 58%,transparent 72%);box-shadow:0 0 40px rgba(168,143,255,.85)}
+    h1{font-size:18px;letter-spacing:.16em;text-transform:uppercase;margin:0}
+    .sub{color:var(--muted);font-size:13px;margin-top:2px}
+    button{border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.08);color:var(--ink);font-weight:800;padding:10px 14px;cursor:pointer;transition:.2s}
+    button:hover{transform:translateY(-1px);background:rgba(255,255,255,.15)}
+    .primary{background:linear-gradient(135deg,#766cff,#b27cff);border-color:rgba(255,255,255,.35);box-shadow:0 0 26px rgba(155,124,255,.35)}
+    .panel{border:1px solid var(--line);border-radius:26px;background:var(--panel);padding:18px;backdrop-filter:blur(18px);box-shadow:0 30px 100px rgba(0,0,0,.35)}
+    .panel h2{font-size:14px;letter-spacing:.15em;text-transform:uppercase;margin:0 0 12px;color:#e2e6ff}
+    .panel p,.panel li{font-size:14px;line-height:1.55;color:var(--muted)}
+    .panel ul{padding-left:18px;margin:8px 0}
+    .stage{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+    .chip{font-size:11px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);border-radius:999px;padding:7px 9px;color:#d8ddff}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+    .stat{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);border-radius:18px;padding:12px}
+    .stat b{font-size:25px;display:block}
+    .stat span{font-size:12px;color:var(--muted)}
+    .chamber{position:relative;min-height:760px;border:1px solid var(--line);border-radius:34px;background:radial-gradient(circle at 50% 50%,rgba(33,29,91,.75) 0%,rgba(9,12,35,.76) 43%,rgba(2,3,10,.45) 100%);overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,.5)}
+    .orbit{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:1px dashed rgba(190,198,255,.18);border-radius:50%;pointer-events:none}
+    .o1{width:265px;height:265px}.o2{width:390px;height:390px}.o3{width:520px;height:520px}.o4{width:650px;height:650px}
+    .signal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:230px;height:230px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(circle,#fff 0 2%,#efe6ff 3% 12%,#bca2ff 34%,#6d58e8 68%,#211249 100%);box-shadow:0 0 90px rgba(188,162,255,.88),inset 0 0 34px rgba(255,255,255,.36);border:1px solid rgba(255,255,255,.5);z-index:2}
+    .signal h3{margin:0 0 8px;color:#1d123b;font-size:18px;letter-spacing:.18em;text-transform:uppercase}
+    .signal p{margin:0;color:#261943;font-size:12px;font-weight:900;line-height:1.35}
+    .orb{position:absolute;width:116px;height:116px;border-radius:50%;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.55);background:radial-gradient(circle at 31% 25%,#fff 0 6%,#edf0ff 12% 24%,#9ea9ff 57%,#30356e 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px;cursor:pointer;transition:.22s;box-shadow:0 0 28px rgba(160,170,255,.48);z-index:3}
+    .orb:hover{transform:translate(-50%,-50%) scale(1.08);box-shadow:0 0 50px rgba(214,219,255,.9)}
+    .orb .name{font-weight:950;color:#101534;font-size:13px}
+    .orb .state{font-size:10px;color:#25305e;margin-top:3px;text-transform:uppercase;letter-spacing:.08em;font-weight:900}
+    .orb.submitted{background:radial-gradient(circle at 31% 25%,#fff 0 6%,#e9f1ff 12% 24%,#86b7ff 57%,#1f3d75 100%)}
+    .orb.assigned{background:radial-gradient(circle at 31% 25%,#fff 0 6%,#f6ebff 12% 24%,#c79cff 57%,#563078 100%)}
+    .orb.star{background:radial-gradient(circle at 31% 25%,#fff 0 6%,#fff7de 12% 24%,#ffd985 57%,#8a5e18 100%);box-shadow:0 0 44px rgba(255,217,133,.88)}
+    .workspace{position:fixed;inset:0;background:rgba(2,3,10,.95);z-index:40;display:none;padding:28px;overflow:auto}
+    .workspace.open{display:block}
+    .shell{max-width:1120px;margin:0 auto;border:1px solid var(--line);border-radius:34px;background:linear-gradient(180deg,rgba(16,21,55,.96),rgba(5,7,18,.96));box-shadow:0 30px 120px rgba(0,0,0,.75);padding:24px}
+    .ws-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:18px}
+    .ws-head h2{font-size:30px;margin:0}
+    .ws-head p{color:var(--muted);margin:6px 0 0;line-height:1.45}
+    .forms{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .card{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.065);border-radius:24px;padding:16px}
+    .full{grid-column:1/-1}
+    label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.13em;color:#d7dcff;font-weight:900;margin-bottom:8px}
+    textarea,input{width:100%;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:#060817;color:#fff;padding:12px;font:inherit;outline:none}
+    textarea{min-height:118px;resize:vertical}
+    .list{display:grid;gap:12px;margin-top:12px}
+    .contrib{border:1px solid rgba(255,255,255,.13);background:rgba(0,0,0,.24);border-radius:18px;padding:13px}
+    .contrib small{color:var(--cyan);font-weight:950;text-transform:uppercase;letter-spacing:.12em}
+    .contrib p{white-space:pre-wrap;color:#eef0ff;margin:8px 0 0}
+    .contrib img{max-width:100%;border-radius:14px;border:1px solid rgba(255,255,255,.16);margin-top:10px}
+    .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .pill{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.075);border-radius:999px;padding:8px 10px;font-size:12px;color:#e7eaff;cursor:pointer;font-weight:800}
+    .pill.selected{background:#b27cff;color:#130924}
+    .footer{grid-column:1/4;text-align:center;color:#858cb8;font-size:12px}
+    @media(max-width:1100px){.app{grid-template-columns:1fr}.app header,.footer{grid-column:auto}.chamber{min-height:720px}.forms{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="brand"><div class="mark"></div><div><h1>Star Seed V2</h1><div class="sub">Signal chamber · 12 clickable contributor orbs · personal workspaces</div></div></div>
+      <div>
+        <label style="font-size:12px;color:var(--muted);font-weight:800"><input id="stewardMode" type="checkbox"> Steward mode</label>
+        <button onclick="resetAll()">Reset demo</button>
+        <button class="primary" onclick="document.getElementById('signal').scrollIntoView({behavior:'smooth',block:'center'})">Enter Signal</button>
+      </div>
+    </header>
 
-type Contribution = {
-  id: string
-  createdAt: number
-  alias: string
-  emoji: string
-  message: string
-  quantity: number
+    <aside class="panel">
+      <h2>How this works</h2>
+      <p>There are 12 contributor orbs placed evenly in a circumference around the central Signal.</p>
+      <ul>
+        <li>Click any orb to open that contributor's workspace.</li>
+        <li>Contributors can add a question, statement or sketch.</li>
+        <li>Contributors do not select forces.</li>
+        <li>You assign forces later in Steward mode.</li>
+      </ul>
+      <div class="stage"><span class="chip">Signal</span><span class="chip">Contribution</span><span class="chip">Force Discovery</span><span class="chip">Formation</span><span class="chip">Capability Cell</span><span class="chip">Manifestation</span></div>
+    </aside>
+
+    <main class="chamber" id="signal">
+      <div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="orbit o4"></div>
+      <div class="signal"><div><h3>Signal 001</h3><p>If you were designing opportunity from scratch today, what would replace LinkedIn?</p></div></div>
+      <div id="orbLayer"></div>
+    </main>
+
+    <aside class="panel">
+      <h2>Signal Status</h2>
+      <p>This MVP tests whether a single resonant Signal can attract contribution and reveal capability patterns before full software is built.</p>
+      <div class="stats">
+        <div class="stat"><b id="sContribs">0</b><span>contributions</span></div>
+        <div class="stat"><b id="sSketches">0</b><span>sketches</span></div>
+        <div class="stat"><b id="sForces">0</b><span>forces assigned</span></div>
+        <div class="stat"><b id="sActive">12</b><span>clickable orbs</span></div>
+      </div>
+      <h2 style="margin-top:20px">Orb States</h2>
+      <p>Neutral = workspace open. Blue = contributed. Purple = force assigned. Gold = exceptional relevance.</p>
+    </aside>
+
+    <div class="footer">Star Seed organises around possibility rather than profiles. Contribution creates evidence. Force is discovered, not self-declared.</div>
+  </div>
+
+  <div class="workspace" id="workspace">
+    <div class="shell">
+      <div class="ws-head">
+        <div>
+          <h2 id="wsName">Contributor Workspace</h2>
+          <p>This is a personal contribution workspace. Add questions, statements or sketches toward the Signal. Forces are assigned later by the steward.</p>
+        </div>
+        <button onclick="closeWorkspace()">Back to Signal</button>
+      </div>
+
+      <div class="forms">
+        <div class="card">
+          <label>Question</label>
+          <textarea id="qInput" placeholder="What important question does this Signal raise?"></textarea>
+          <button class="primary" style="margin-top:10px" onclick="saveText('Question','qInput')">Submit question</button>
+        </div>
+        <div class="card">
+          <label>Statement</label>
+          <textarea id="sInput" placeholder="What do you believe, notice, challenge or propose?"></textarea>
+          <button class="primary" style="margin-top:10px" onclick="saveText('Statement','sInput')">Submit statement</button>
+        </div>
+        <div class="card full">
+          <label>Sketch Upload</label>
+          <input id="sketchFile" type="file" accept="image/*" />
+          <textarea id="sketchNote" placeholder="Optional note explaining your sketch"></textarea>
+          <button class="primary" style="margin-top:10px" onclick="saveSketch()">Upload sketch</button>
+        </div>
+        <div class="card full">
+          <label>Contribution Lineage</label>
+          <div id="lineage" class="list"></div>
+        </div>
+        <div class="card full" id="stewardPanel" style="display:none">
+          <label>Steward Force Assignment</label>
+          <p style="color:var(--muted);margin-top:0">Forces are assigned by you after observing contribution patterns. Contributors never self-select.</p>
+          <div id="forcePills" class="pills"></div>
+          <button onclick="clearForce()" style="margin-top:12px">Clear force</button>
+          <button onclick="markExceptional()" style="margin-top:12px">Mark exceptional relevance</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const contributors=[
+  ["anne-h","Anne H."],["tom-y","Tom Y."],["maya-r","Maya R."],["james-w","James W."],
+  ["sarah-l","Sarah L."],["leo-m","Leo M."],["amina-k","Amina K."],["noah-p","Noah P."],
+  ["isha-d","Isha D."],["omar-s","Omar S."],["ella-b","Ella B."],["kai-t","Kai T."]
+].map(([id,name],i,arr)=>({id,name,angle:-90+(360/arr.length)*i}));
+
+const forces=["Visionary","Explorer","Builder","Creator","Connector","Transformer","Steward"];
+let active=null;
+
+function data(){return JSON.parse(localStorage.getItem("starSeedV2Fixed")||'{"contributions":{},"forces":{},"exceptional":{}}')}
+function save(d){localStorage.setItem("starSeedV2Fixed",JSON.stringify(d))}
+function state(id){const d=data();if(d.exceptional[id])return"star";if(d.forces[id])return"assigned";if((d.contributions[id]||[]).length)return"submitted";return""}
+
+function render(){
+  const layer=document.getElementById("orbLayer"); layer.innerHTML="";
+  const chamber=document.querySelector(".chamber");
+  const radius=Math.min(chamber.clientWidth,chamber.clientHeight)*0.38;
+  const cx=chamber.clientWidth/2, cy=chamber.clientHeight/2;
+  const d=data();
+
+  contributors.forEach(c=>{
+    const rad=c.angle*Math.PI/180;
+    const x=cx+radius*Math.cos(rad);
+    const y=cy+radius*Math.sin(rad);
+    const div=document.createElement("button");
+    div.type="button";
+    div.className="orb "+state(c.id);
+    div.style.left=x+"px";
+    div.style.top=y+"px";
+    const count=(d.contributions[c.id]||[]).length;
+    const sub=d.forces[c.id] ? "Force assigned" : count ? count+" contribution"+(count>1?"s":"") : "Open workspace";
+    div.innerHTML=`<div class="name">${c.name}</div><div class="state">${sub}</div>`;
+    div.onclick=()=>openWorkspace(c.id);
+    layer.appendChild(div);
+  });
+  updateStats();
 }
 
-export default function Model({
-  modelPath,
-  contributions,
-  skullPulseTrigger,
-}: {
-  modelPath: string
-  contributions: Contribution[]
-  skullPulseTrigger: number
-}) {
-  const { scene } = useGLTF(modelPath)
-
-  const spinRef = useRef<THREE.Group>(null!)
-  const baseRef = useRef<THREE.InstancedMesh>(null!)
-  const glowRef = useRef<THREE.InstancedMesh>(null!)
-
-  const baseMaterialRef = useRef<THREE.MeshPhysicalMaterial>(null!)
-  const glowMaterialRef = useRef<THREE.MeshBasicMaterial>(null!)
-
-  const displayCountRef = useRef(0)
-  const contributionPulseRef = useRef<number[]>([])
-  const phaseOffsetsRef = useRef<number[]>([])
-  const speedOffsetsRef = useRef<number[]>([])
-
-  const lastPulseTriggerRef = useRef(skullPulseTrigger)
-  const structurePulseRef = useRef(0)
-
-  const baseColor = useMemo(() => new THREE.Color('#1e3a8a'), [])
-  const shimmerColor = useMemo(() => new THREE.Color('#7dd3fc'), [])
-  const contributionColor = useMemo(() => new THREE.Color('#ffffff'), [])
-  const farColor = useMemo(() => new THREE.Color('#0f1f4d'), [])
-
-  const tempObject = useMemo(() => new THREE.Object3D(), [])
-  const tempColor = useMemo(() => new THREE.Color(), [])
-
-  // --------------------------------------------------
-  // POINT SAMPLING
-  // --------------------------------------------------
-
-  const rawPoints = useMemo(() => {
-    const pts: THREE.Vector3[] = []
-    const minDistance = 0.008
-
-    scene.traverse((child: any) => {
-      if (child.isMesh) {
-        const pos = child.geometry.attributes.position
-
-        for (let i = 0; i < pos.count; i++) {
-          const v = new THREE.Vector3(
-            pos.getX(i),
-            pos.getY(i),
-            pos.getZ(i)
-          )
-
-          let tooClose = false
-          for (let j = 0; j < pts.length; j++) {
-            if (v.distanceTo(pts[j]) < minDistance) {
-              tooClose = true
-              break
-            }
-          }
-
-          if (!tooClose) pts.push(v)
-        }
-      }
-    })
-
-    pts.sort(() => Math.random() - 0.5)
-    return pts
-  }, [scene])
-
-  // --------------------------------------------------
-  // CONTRIBUTION-BASED ORDER
-  // --------------------------------------------------
-
-  const points = useMemo(() => {
-    if (rawPoints.length === 0) return []
-
-    const used = new Set<number>()
-    const ordered: THREE.Vector3[] = []
-
-    const getRandomUnused = () => {
-      let idx = 0
-      do {
-        idx = Math.floor(Math.random() * rawPoints.length)
-      } while (used.has(idx))
-      used.add(idx)
-      return rawPoints[idx]
-    }
-
-    for (const c of contributions) {
-      // SINGLE → random
-      if (c.quantity === 1) {
-        ordered.push(getRandomUnused())
-        continue
-      }
-
-      // MULTI → cluster
-      const anchorIndex = Math.floor(Math.random() * rawPoints.length)
-      const anchor = rawPoints[anchorIndex]
-
-      const nearby = rawPoints
-        .map((p, i) => ({ p, i, d: p.distanceToSquared(anchor) }))
-        .sort((a, b) => a.d - b.d)
-
-      let added = 0
-
-      for (let i = 0; i < nearby.length && added < c.quantity; i++) {
-        const idx = nearby[i].i
-        if (!used.has(idx)) {
-          used.add(idx)
-          ordered.push(nearby[i].p)
-          added++
-        }
-      }
-    }
-
-    return ordered
-  }, [rawPoints, contributions])
-
-  // --------------------------------------------------
-
-  useFrame((state, delta) => {
-    if (!spinRef.current || !baseRef.current || !glowRef.current) return
-
-    spinRef.current.rotation.z = state.clock.elapsedTime * 0.02
-
-    if (lastPulseTriggerRef.current !== skullPulseTrigger) {
-      lastPulseTriggerRef.current = skullPulseTrigger
-      structurePulseRef.current = 1
-    }
-
-    structurePulseRef.current = Math.max(0, structurePulseRef.current - delta * 0.9)
-
-    const targetCount = Math.min(points.length, 50000)
-
-    if (displayCountRef.current < targetCount) {
-      displayCountRef.current += 6
-    }
-
-    let glowCount = 0
-
-    for (let i = 0; i < displayCountRef.current && i < targetCount; i++) {
-      const p = points[i]
-
-      const pulse = Math.sin(state.clock.elapsedTime * 0.8 + i) * 0.5 + 0.5
-      const scale = 1 + pulse * 0.15
-
-      tempObject.position.copy(p)
-      tempObject.scale.setScalar(scale * 0.9)
-      tempObject.updateMatrix()
-      baseRef.current.setMatrixAt(i, tempObject.matrix)
-
-      tempColor.copy(baseColor).lerp(shimmerColor, pulse)
-      baseRef.current.setColorAt(i, tempColor)
-
-      // glow
-      const glowStrength = pulse * 0.5 + structurePulseRef.current * 1.5
-
-      if (glowStrength > 0.1) {
-        tempObject.scale.setScalar(scale * 1.4)
-        tempObject.updateMatrix()
-        glowRef.current.setMatrixAt(glowCount, tempObject.matrix)
-
-        tempColor.copy(shimmerColor)
-        glowRef.current.setColorAt(glowCount, tempColor)
-
-        glowCount++
-      }
-    }
-
-    baseRef.current.count = displayCountRef.current
-    glowRef.current.count = glowCount
-
-    baseRef.current.instanceMatrix.needsUpdate = true
-    glowRef.current.instanceMatrix.needsUpdate = true
-
-    if (baseRef.current.instanceColor) {
-      baseRef.current.instanceColor.needsUpdate = true
-    }
-
-    if (glowRef.current.instanceColor) {
-      glowRef.current.instanceColor.needsUpdate = true
-    }
-  })
-
-  return (
-    <group rotation={[Math.PI / 2, 0, 0]}>
-      <group ref={spinRef}>
-        <instancedMesh ref={baseRef} args={[undefined, undefined, 50000]}>
-          <sphereGeometry args={[0.003, 20, 20]} />
-          <meshPhysicalMaterial
-            ref={baseMaterialRef}
-            emissive="#3567f1"
-            emissiveIntensity={0.7}
-            roughness={0.4}
-            metalness={0.7}
-            vertexColors
-          />
-        </instancedMesh>
-
-        <instancedMesh ref={glowRef} args={[undefined, undefined, 50000]}>
-          <sphereGeometry args={[0.003, 20, 20]} />
-          <meshBasicMaterial
-            ref={glowMaterialRef}
-            transparent
-            opacity={0.5}
-            blending={THREE.AdditiveBlending}
-            vertexColors
-          />
-        </instancedMesh>
-      </group>
-    </group>
-  )
+function updateStats(){
+  const d=data();
+  const all=Object.values(d.contributions).flat();
+  document.getElementById("sContribs").textContent=all.length;
+  document.getElementById("sSketches").textContent=all.filter(x=>x.type==="Sketch").length;
+  document.getElementById("sForces").textContent=Object.keys(d.forces).length;
+  document.getElementById("sActive").textContent=contributors.length;
 }
+
+function openWorkspace(id){
+  active=id;
+  document.getElementById("wsName").textContent=contributors.find(c=>c.id===id).name+" Workspace";
+  document.getElementById("workspace").classList.add("open");
+  renderLineage();
+  renderPills();
+  toggleSteward();
+}
+
+function closeWorkspace(){
+  document.getElementById("workspace").classList.remove("open");
+  active=null;
+  render();
+}
+
+function saveText(type,inputId){
+  const el=document.getElementById(inputId);
+  const txt=el.value.trim();
+  if(!txt||!active)return;
+  const d=data();
+  d.contributions[active]=d.contributions[active]||[];
+  d.contributions[active].push({type,text:txt,created:new Date().toLocaleString()});
+  save(d);
+  el.value="";
+  renderLineage();
+}
+
+function saveSketch(){
+  const file=document.getElementById("sketchFile").files[0];
+  const note=document.getElementById("sketchNote").value.trim();
+  if(!file||!active)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const d=data();
+    d.contributions[active]=d.contributions[active]||[];
+    d.contributions[active].push({type:"Sketch",text:note||"Sketch uploaded",image:e.target.result,created:new Date().toLocaleString()});
+    save(d);
+    document.getElementById("sketchFile").value="";
+    document.getElementById("sketchNote").value="";
+    renderLineage();
+  };
+  reader.readAsDataURL(file);
+}
+
+function renderLineage(){
+  const list=document.getElementById("lineage");
+  const items=(data().contributions[active]||[]);
+  if(!items.length){
+    list.innerHTML='<p style="color:var(--muted)">No contributions yet. Start with a question, statement or sketch.</p>';
+    return;
+  }
+  list.innerHTML=items.map(i=>`<div class="contrib"><small>${i.type} · ${i.created}</small><p>${esc(i.text)}</p>${i.image?`<img src="${i.image}" alt="Uploaded sketch">`:""}</div>`).join("");
+}
+
+function renderPills(){
+  const d=data();
+  const wrap=document.getElementById("forcePills");
+  wrap.innerHTML=forces.map(f=>`<span class="pill ${d.forces[active]===f?"selected":""}" onclick="assignForce('${f}')">${f}</span>`).join("");
+}
+
+function assignForce(f){
+  const d=data();
+  d.forces[active]=f;
+  save(d);
+  renderPills();
+}
+
+function clearForce(){
+  const d=data();
+  delete d.forces[active];
+  delete d.exceptional[active];
+  save(d);
+  renderPills();
+}
+
+function markExceptional(){
+  const d=data();
+  d.exceptional[active]=true;
+  save(d);
+}
+
+function toggleSteward(){
+  document.getElementById("stewardPanel").style.display=document.getElementById("stewardMode").checked?"block":"none";
+}
+
+document.getElementById("stewardMode").addEventListener("change",toggleSteward);
+
+function resetAll(){
+  if(confirm("Reset local demo data?")){
+    localStorage.removeItem("starSeedV2Fixed");
+    render();
+    if(active)renderLineage();
+  }
+}
+
+function esc(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+window.addEventListener("resize",render);
+render();
+</script>
+</body>
+</html>'''
+
+path = Path("/mnt/data/starseed-v2-index-fixed.html")
+path.write_text(html, encoding="utf-8")
+path
