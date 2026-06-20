@@ -1,246 +1,230 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; min-height: 15.0px}
-  </style>
-</head>
-<body>
-<p class="p1">'use client'</p>
-<p class="p2"><br></p>
-<p class="p1">import { useGLTF } from '@react-three/drei'</p>
-<p class="p1">import { useMemo, useRef, useEffect } from 'react'</p>
-<p class="p1">import { useFrame } from '@react-three/fiber'</p>
-<p class="p1">import * as THREE from 'three'</p>
-<p class="p2"><br></p>
-<p class="p1">type Contribution = {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>id: string</p>
-<p class="p1"><span class="Apple-converted-space">  </span>createdAt: number</p>
-<p class="p1"><span class="Apple-converted-space">  </span>alias: string</p>
-<p class="p1"><span class="Apple-converted-space">  </span>emoji: string</p>
-<p class="p1"><span class="Apple-converted-space">  </span>message: string</p>
-<p class="p1"><span class="Apple-converted-space">  </span>quantity: number</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">export default function Model({</p>
-<p class="p1"><span class="Apple-converted-space">  </span>modelPath,</p>
-<p class="p1"><span class="Apple-converted-space">  </span>contributions,</p>
-<p class="p1"><span class="Apple-converted-space">  </span>skullPulseTrigger,</p>
-<p class="p1">}: {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>modelPath: string</p>
-<p class="p1"><span class="Apple-converted-space">  </span>contributions: Contribution[]</p>
-<p class="p1"><span class="Apple-converted-space">  </span>skullPulseTrigger: number</p>
-<p class="p1">}) {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const { scene } = useGLTF(modelPath)</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>const spinRef = useRef&lt;THREE.Group&gt;(null!)</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const baseRef = useRef&lt;THREE.InstancedMesh&gt;(null!)</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const glowRef = useRef&lt;THREE.InstancedMesh&gt;(null!)</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>const baseMaterialRef = useRef&lt;THREE.MeshPhysicalMaterial&gt;(null!)</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const glowMaterialRef = useRef&lt;THREE.MeshBasicMaterial&gt;(null!)</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>const displayCountRef = useRef(0)</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const contributionPulseRef = useRef&lt;number[]&gt;([])</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const phaseOffsetsRef = useRef&lt;number[]&gt;([])</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const speedOffsetsRef = useRef&lt;number[]&gt;([])</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>const lastPulseTriggerRef = useRef(skullPulseTrigger)</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const structurePulseRef = useRef(0)</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>const baseColor = useMemo(() =&gt; new THREE.Color('#1e3a8a'), [])</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const shimmerColor = useMemo(() =&gt; new THREE.Color('#7dd3fc'), [])</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const contributionColor = useMemo(() =&gt; new THREE.Color('#ffffff'), [])</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const farColor = useMemo(() =&gt; new THREE.Color('#0f1f4d'), [])</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>const tempObject = useMemo(() =&gt; new THREE.Object3D(), [])</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const tempColor = useMemo(() =&gt; new THREE.Color(), [])</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// --------------------------------------------------</p>
-<p class="p1"><span class="Apple-converted-space">  </span>// POINT SAMPLING</p>
-<p class="p1"><span class="Apple-converted-space">  </span>// --------------------------------------------------</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>const rawPoints = useMemo(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const pts: THREE.Vector3[] = []</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const minDistance = 0.008</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>scene.traverse((child: any) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (child.isMesh) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const pos = child.geometry.attributes.position</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>for (let i = 0; i &lt; pos.count; i++) {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const v = new THREE.Vector3(</p>
-<p class="p1"><span class="Apple-converted-space">            </span>pos.getX(i),</p>
-<p class="p1"><span class="Apple-converted-space">            </span>pos.getY(i),</p>
-<p class="p1"><span class="Apple-converted-space">            </span>pos.getZ(i)</p>
-<p class="p1"><span class="Apple-converted-space">          </span>)</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">          </span>let tooClose = false</p>
-<p class="p1"><span class="Apple-converted-space">          </span>for (let j = 0; j &lt; pts.length; j++) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (v.distanceTo(pts[j]) &lt; minDistance) {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>tooClose = true</p>
-<p class="p1"><span class="Apple-converted-space">              </span>break</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">          </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">          </span>if (!tooClose) pts.push(v)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>})</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>pts.sort(() =&gt; Math.random() - 0.5)</p>
-<p class="p1"><span class="Apple-converted-space">    </span>return pts</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}, [scene])</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// --------------------------------------------------</p>
-<p class="p1"><span class="Apple-converted-space">  </span>// CONTRIBUTION-BASED ORDER</p>
-<p class="p1"><span class="Apple-converted-space">  </span>// --------------------------------------------------</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>const points = useMemo(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (rawPoints.length === 0) return []</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const used = new Set&lt;number&gt;()</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const ordered: THREE.Vector3[] = []</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const getRandomUnused = () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>let idx = 0</p>
-<p class="p1"><span class="Apple-converted-space">      </span>do {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>idx = Math.floor(Math.random() * rawPoints.length)</p>
-<p class="p1"><span class="Apple-converted-space">      </span>} while (used.has(idx))</p>
-<p class="p1"><span class="Apple-converted-space">      </span>used.add(idx)</p>
-<p class="p1"><span class="Apple-converted-space">      </span>return rawPoints[idx]</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>for (const c of contributions) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>// SINGLE → random</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (c.quantity === 1) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ordered.push(getRandomUnused())</p>
-<p class="p1"><span class="Apple-converted-space">        </span>continue</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>// MULTI → cluster</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const anchorIndex = Math.floor(Math.random() * rawPoints.length)</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const anchor = rawPoints[anchorIndex]</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const nearby = rawPoints</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.map((p, i) =&gt; ({ p, i, d: p.distanceToSquared(anchor) }))</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.sort((a, b) =&gt; a.d - b.d)</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>let added = 0</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>for (let i = 0; i &lt; nearby.length &amp;&amp; added &lt; c.quantity; i++) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const idx = nearby[i].i</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (!used.has(idx)) {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>used.add(idx)</p>
-<p class="p1"><span class="Apple-converted-space">          </span>ordered.push(nearby[i].p)</p>
-<p class="p1"><span class="Apple-converted-space">          </span>added++</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>return ordered</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}, [rawPoints, contributions])</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>// --------------------------------------------------</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>useFrame((state, delta) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (!spinRef.current || !baseRef.current || !glowRef.current) return</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>spinRef.current.rotation.z = state.clock.elapsedTime * 0.02</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (lastPulseTriggerRef.current !== skullPulseTrigger) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>lastPulseTriggerRef.current = skullPulseTrigger</p>
-<p class="p1"><span class="Apple-converted-space">      </span>structurePulseRef.current = 1</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>structurePulseRef.current = Math.max(0, structurePulseRef.current - delta * 0.9)</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const targetCount = Math.min(points.length, 50000)</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (displayCountRef.current &lt; targetCount) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>displayCountRef.current += 6</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>let glowCount = 0</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>for (let i = 0; i &lt; displayCountRef.current &amp;&amp; i &lt; targetCount; i++) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const p = points[i]</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const pulse = Math.sin(state.clock.elapsedTime * 0.8 + i) * 0.5 + 0.5</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const scale = 1 + pulse * 0.15</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>tempObject.position.copy(p)</p>
-<p class="p1"><span class="Apple-converted-space">      </span>tempObject.scale.setScalar(scale * 0.9)</p>
-<p class="p1"><span class="Apple-converted-space">      </span>tempObject.updateMatrix()</p>
-<p class="p1"><span class="Apple-converted-space">      </span>baseRef.current.setMatrixAt(i, tempObject.matrix)</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>tempColor.copy(baseColor).lerp(shimmerColor, pulse)</p>
-<p class="p1"><span class="Apple-converted-space">      </span>baseRef.current.setColorAt(i, tempColor)</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>// glow</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const glowStrength = pulse * 0.5 + structurePulseRef.current * 1.5</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (glowStrength &gt; 0.1) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>tempObject.scale.setScalar(scale * 1.4)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>tempObject.updateMatrix()</p>
-<p class="p1"><span class="Apple-converted-space">        </span>glowRef.current.setMatrixAt(glowCount, tempObject.matrix)</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>tempColor.copy(shimmerColor)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>glowRef.current.setColorAt(glowCount, tempColor)</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>glowCount++</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>baseRef.current.count = displayCountRef.current</p>
-<p class="p1"><span class="Apple-converted-space">    </span>glowRef.current.count = glowCount</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>baseRef.current.instanceMatrix.needsUpdate = true</p>
-<p class="p1"><span class="Apple-converted-space">    </span>glowRef.current.instanceMatrix.needsUpdate = true</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (baseRef.current.instanceColor) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>baseRef.current.instanceColor.needsUpdate = true</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (glowRef.current.instanceColor) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>glowRef.current.instanceColor.needsUpdate = true</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>})</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;group rotation={[Math.PI / 2, 0, 0]}&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;group ref={spinRef}&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;instancedMesh ref={baseRef} args={[undefined, undefined, 50000]}&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;sphereGeometry args={[0.003, 20, 20]} /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;meshPhysicalMaterial</p>
-<p class="p1"><span class="Apple-converted-space">            </span>ref={baseMaterialRef}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>emissive="#3567f1"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>emissiveIntensity={0.7}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>roughness={0.4}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>metalness={0.7}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>vertexColors</p>
-<p class="p1"><span class="Apple-converted-space">          </span>/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/instancedMesh&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;instancedMesh ref={glowRef} args={[undefined, undefined, 50000]}&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;sphereGeometry args={[0.003, 20, 20]} /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;meshBasicMaterial</p>
-<p class="p1"><span class="Apple-converted-space">            </span>ref={glowMaterialRef}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transparent</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opacity={0.5}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>blending={THREE.AdditiveBlending}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>vertexColors</p>
-<p class="p1"><span class="Apple-converted-space">          </span>/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/instancedMesh&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/group&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/group&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>)</p>
-<p class="p1">}</p>
-</body>
-</html>
+'use client'
+
+import { useGLTF } from '@react-three/drei'
+import { useMemo, useRef, useEffect } from 'react'
+import { useFrame } from '@react-three/fiber'
+import * as THREE from 'three'
+
+type Contribution = {
+  id: string
+  createdAt: number
+  alias: string
+  emoji: string
+  message: string
+  quantity: number
+}
+
+export default function Model({
+  modelPath,
+  contributions,
+  skullPulseTrigger,
+}: {
+  modelPath: string
+  contributions: Contribution[]
+  skullPulseTrigger: number
+}) {
+  const { scene } = useGLTF(modelPath)
+
+  const spinRef = useRef<THREE.Group>(null!)
+  const baseRef = useRef<THREE.InstancedMesh>(null!)
+  const glowRef = useRef<THREE.InstancedMesh>(null!)
+
+  const baseMaterialRef = useRef<THREE.MeshPhysicalMaterial>(null!)
+  const glowMaterialRef = useRef<THREE.MeshBasicMaterial>(null!)
+
+  const displayCountRef = useRef(0)
+  const contributionPulseRef = useRef<number[]>([])
+  const phaseOffsetsRef = useRef<number[]>([])
+  const speedOffsetsRef = useRef<number[]>([])
+
+  const lastPulseTriggerRef = useRef(skullPulseTrigger)
+  const structurePulseRef = useRef(0)
+
+  const baseColor = useMemo(() => new THREE.Color('#1e3a8a'), [])
+  const shimmerColor = useMemo(() => new THREE.Color('#7dd3fc'), [])
+  const contributionColor = useMemo(() => new THREE.Color('#ffffff'), [])
+  const farColor = useMemo(() => new THREE.Color('#0f1f4d'), [])
+
+  const tempObject = useMemo(() => new THREE.Object3D(), [])
+  const tempColor = useMemo(() => new THREE.Color(), [])
+
+  // --------------------------------------------------
+  // POINT SAMPLING
+  // --------------------------------------------------
+
+  const rawPoints = useMemo(() => {
+    const pts: THREE.Vector3[] = []
+    const minDistance = 0.008
+
+    scene.traverse((child: any) => {
+      if (child.isMesh) {
+        const pos = child.geometry.attributes.position
+
+        for (let i = 0; i < pos.count; i++) {
+          const v = new THREE.Vector3(
+            pos.getX(i),
+            pos.getY(i),
+            pos.getZ(i)
+          )
+
+          let tooClose = false
+          for (let j = 0; j < pts.length; j++) {
+            if (v.distanceTo(pts[j]) < minDistance) {
+              tooClose = true
+              break
+            }
+          }
+
+          if (!tooClose) pts.push(v)
+        }
+      }
+    })
+
+    pts.sort(() => Math.random() - 0.5)
+    return pts
+  }, [scene])
+
+  // --------------------------------------------------
+  // CONTRIBUTION-BASED ORDER
+  // --------------------------------------------------
+
+  const points = useMemo(() => {
+    if (rawPoints.length === 0) return []
+
+    const used = new Set<number>()
+    const ordered: THREE.Vector3[] = []
+
+    const getRandomUnused = () => {
+      let idx = 0
+      do {
+        idx = Math.floor(Math.random() * rawPoints.length)
+      } while (used.has(idx))
+      used.add(idx)
+      return rawPoints[idx]
+    }
+
+    for (const c of contributions) {
+      // SINGLE → random
+      if (c.quantity === 1) {
+        ordered.push(getRandomUnused())
+        continue
+      }
+
+      // MULTI → cluster
+      const anchorIndex = Math.floor(Math.random() * rawPoints.length)
+      const anchor = rawPoints[anchorIndex]
+
+      const nearby = rawPoints
+        .map((p, i) => ({ p, i, d: p.distanceToSquared(anchor) }))
+        .sort((a, b) => a.d - b.d)
+
+      let added = 0
+
+      for (let i = 0; i < nearby.length && added < c.quantity; i++) {
+        const idx = nearby[i].i
+        if (!used.has(idx)) {
+          used.add(idx)
+          ordered.push(nearby[i].p)
+          added++
+        }
+      }
+    }
+
+    return ordered
+  }, [rawPoints, contributions])
+
+  // --------------------------------------------------
+
+  useFrame((state, delta) => {
+    if (!spinRef.current || !baseRef.current || !glowRef.current) return
+
+    spinRef.current.rotation.z = state.clock.elapsedTime * 0.02
+
+    if (lastPulseTriggerRef.current !== skullPulseTrigger) {
+      lastPulseTriggerRef.current = skullPulseTrigger
+      structurePulseRef.current = 1
+    }
+
+    structurePulseRef.current = Math.max(0, structurePulseRef.current - delta * 0.9)
+
+    const targetCount = Math.min(points.length, 50000)
+
+    if (displayCountRef.current < targetCount) {
+      displayCountRef.current += 6
+    }
+
+    let glowCount = 0
+
+    for (let i = 0; i < displayCountRef.current && i < targetCount; i++) {
+      const p = points[i]
+
+      const pulse = Math.sin(state.clock.elapsedTime * 0.8 + i) * 0.5 + 0.5
+      const scale = 1 + pulse * 0.15
+
+      tempObject.position.copy(p)
+      tempObject.scale.setScalar(scale * 0.9)
+      tempObject.updateMatrix()
+      baseRef.current.setMatrixAt(i, tempObject.matrix)
+
+      tempColor.copy(baseColor).lerp(shimmerColor, pulse)
+      baseRef.current.setColorAt(i, tempColor)
+
+      // glow
+      const glowStrength = pulse * 0.5 + structurePulseRef.current * 1.5
+
+      if (glowStrength > 0.1) {
+        tempObject.scale.setScalar(scale * 1.4)
+        tempObject.updateMatrix()
+        glowRef.current.setMatrixAt(glowCount, tempObject.matrix)
+
+        tempColor.copy(shimmerColor)
+        glowRef.current.setColorAt(glowCount, tempColor)
+
+        glowCount++
+      }
+    }
+
+    baseRef.current.count = displayCountRef.current
+    glowRef.current.count = glowCount
+
+    baseRef.current.instanceMatrix.needsUpdate = true
+    glowRef.current.instanceMatrix.needsUpdate = true
+
+    if (baseRef.current.instanceColor) {
+      baseRef.current.instanceColor.needsUpdate = true
+    }
+
+    if (glowRef.current.instanceColor) {
+      glowRef.current.instanceColor.needsUpdate = true
+    }
+  })
+
+  return (
+    <group rotation={[Math.PI / 2, 0, 0]}>
+      <group ref={spinRef}>
+        <instancedMesh ref={baseRef} args={[undefined, undefined, 50000]}>
+          <sphereGeometry args={[0.003, 20, 20]} />
+          <meshPhysicalMaterial
+            ref={baseMaterialRef}
+            emissive="#3567f1"
+            emissiveIntensity={0.7}
+            roughness={0.4}
+            metalness={0.7}
+            vertexColors
+          />
+        </instancedMesh>
+
+        <instancedMesh ref={glowRef} args={[undefined, undefined, 50000]}>
+          <sphereGeometry args={[0.003, 20, 20]} />
+          <meshBasicMaterial
+            ref={glowMaterialRef}
+            transparent
+            opacity={0.5}
+            blending={THREE.AdditiveBlending}
+            vertexColors
+          />
+        </instancedMesh>
+      </group>
+    </group>
+  )
+}
