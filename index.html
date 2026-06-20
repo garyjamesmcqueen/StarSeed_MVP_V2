@@ -7,464 +7,240 @@
   <meta name="Generator" content="Cocoa HTML Writer">
   <meta name="CocoaVersion" content="2685.5">
   <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #96ccff; -webkit-text-stroke: #96ccff}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #adb0b2; -webkit-text-stroke: #adb0b2; min-height: 14.0px}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #bdc6d0; -webkit-text-stroke: #bdc6d0}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #b76fb3; -webkit-text-stroke: #b76fb3}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #43c0a0; -webkit-text-stroke: #43c0a0}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #adb0b2; -webkit-text-stroke: #adb0b2}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #78818c; -webkit-text-stroke: #78818c}
-    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #4689cc; -webkit-text-stroke: #4689cc}
-    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #fc635f; -webkit-text-stroke: #fc635f}
-    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #68b1ff; -webkit-text-stroke: #68b1ff}
-    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #fd9546; -webkit-text-stroke: #fd9546}
-    p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #c692ff; -webkit-text-stroke: #c692ff}
-    p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #6fe674; -webkit-text-stroke: #6fe674}
-    p.p14 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #8cd3fe; -webkit-text-stroke: #8cd3fe}
-    span.s1 {font-kerning: none; background-color: #0f1010}
-    span.s2 {font-kerning: none}
-    span.s3 {font-kerning: none; color: #b76fb3; background-color: #0f1010; -webkit-text-stroke: 0px #b76fb3}
-    span.s4 {font-kerning: none; color: #adb0b2; background-color: #0f1010; -webkit-text-stroke: 0px #adb0b2}
-    span.s5 {font-kerning: none; color: #bdc6d0; background-color: #0f1010; -webkit-text-stroke: 0px #bdc6d0}
-    span.s6 {font-kerning: none; color: #96ccff; background-color: #0f1010; -webkit-text-stroke: 0px #96ccff}
-    span.s7 {font-kerning: none; color: #4689cc; background-color: #0f1010; -webkit-text-stroke: 0px #4689cc}
-    span.s8 {font-kerning: none; color: #fc635f; background-color: #0f1010; -webkit-text-stroke: 0px #fc635f}
-    span.s9 {font-kerning: none; color: #cacaca; background-color: #0f1010; -webkit-text-stroke: 0px #cacaca}
-    span.s10 {font-kerning: none; color: #43c0a0; background-color: #0f1010; -webkit-text-stroke: 0px #43c0a0}
-    span.s11 {font-kerning: none; color: #fd9546; background-color: #0f1010; -webkit-text-stroke: 0px #fd9546}
-    span.s12 {font-kerning: none; color: #68b1ff; background-color: #0f1010; -webkit-text-stroke: 0px #68b1ff}
-    span.s13 {font-kerning: none; color: #c692ff; background-color: #0f1010; -webkit-text-stroke: 0px #c692ff}
-    span.s14 {font-kerning: none; color: #a7c598; background-color: #0f1010; -webkit-text-stroke: 0px #a7c598}
-    span.s15 {font-kerning: none; color: #8cd3fe; background-color: #0f1010; -webkit-text-stroke: 0px #8cd3fe}
-    span.s16 {font-kerning: none; color: #6d6d6d; background-color: #0f1010; -webkit-text-stroke: 0px #6d6d6d}
-    span.s17 {font-kerning: none; color: #6fe674; background-color: #0f1010; -webkit-text-stroke: 0px #6fe674}
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; min-height: 15.0px}
   </style>
 </head>
 <body>
-<p class="p1"><span class="s1">'use client'</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p1"><span class="s3">import</span><span class="s4"> </span><span class="s5">{ useGLTF }</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s1">'@react-three/drei'</span></p>
-<p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s1">{ useMemo, useRef, useEffect }</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'react'</span></p>
-<p class="p1"><span class="s3">import</span><span class="s4"> </span><span class="s5">{ useFrame }</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s1">'@react-three/fiber'</span></p>
-<p class="p4"><span class="s1">import</span><span class="s4"> </span><span class="s7">*</span><span class="s4"> </span><span class="s1">as</span><span class="s4"> </span><span class="s5">THREE</span><span class="s4"> </span><span class="s1">from</span><span class="s4"> </span><span class="s6">'three'</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p5"><span class="s8">type</span><span class="s4"> </span><span class="s1">Contribution</span><span class="s4"> </span><span class="s9">=</span><span class="s4"> {</span></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s5">id</span><span class="s9">:</span><span class="s4"> </span><span class="s1">string</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s1">createdAt</span><span class="s9">:</span><span class="s4"> </span><span class="s10">number</span></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s5">alias</span><span class="s9">:</span><span class="s4"> </span><span class="s1">string</span></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s5">emoji</span><span class="s9">:</span><span class="s4"> </span><span class="s1">string</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s1">message</span><span class="s9">:</span><span class="s4"> </span><span class="s10">string</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s1">quantity</span><span class="s9">:</span><span class="s4"> </span><span class="s10">number</span></p>
-<p class="p6"><span class="s1">}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s1">// Simple seeded PRNG for reproducible randomness</span></p>
-<p class="p5"><span class="s8">class</span><span class="s4"> </span><span class="s1">SeededRandom</span><span class="s4"> {</span></p>
-<p class="p8"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s1">private</span><span class="s4"> </span><span class="s5">seed</span><span class="s9">:</span><span class="s4"> </span><span class="s10">number</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p9"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s1">constructor</span><span class="s4">(</span><span class="s11">seed</span><span class="s9">:</span><span class="s4"> </span><span class="s10">number</span><span class="s4">) </span><span class="s5">{</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s12">this</span><span class="s1">.seed </span><span class="s9">=</span><span class="s1"> </span><span class="s11">seed</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s13">next</span><span class="s1">()</span><span class="s9">:</span><span class="s1"> </span><span class="s10">number</span><span class="s1"> </span><span class="s5">{</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s12">this</span><span class="s1">.seed </span><span class="s9">=</span><span class="s1"> (</span><span class="s12">this</span><span class="s1">.seed </span><span class="s9">*</span><span class="s1"> </span><span class="s14">9301</span><span class="s1"> </span><span class="s9">+</span><span class="s1"> </span><span class="s14">49297</span><span class="s1">) </span><span class="s9">%</span><span class="s1"> </span><span class="s14">233280</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">return</span><span class="s1"> </span><span class="s12">this</span><span class="s1">.seed </span><span class="s9">/</span><span class="s1"> </span><span class="s14">233280</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p5"><span class="s4"><span class="Apple-converted-space">  </span></span><span class="s13">nextInt</span><span class="s4">(</span><span class="s11">max</span><span class="s9">:</span><span class="s4"> </span><span class="s1">number</span><span class="s4">)</span><span class="s9">:</span><span class="s4"> </span><span class="s1">number</span><span class="s4"> </span><span class="s5">{</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">return</span><span class="s1"> </span><span class="s12">Math</span><span class="s1">.</span><span class="s13">floor</span><span class="s1">(</span><span class="s12">this</span><span class="s1">.</span><span class="s13">next</span><span class="s1">() </span><span class="s9">*</span><span class="s1"> </span><span class="s11">max</span><span class="s1">)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p6"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s13">shuffle</span><span class="s1">&lt;</span><span class="s10">T</span><span class="s1">&gt;(</span><span class="s11">arr</span><span class="s9">:</span><span class="s1"> </span><span class="s10">T</span><span class="s1">[])</span><span class="s9">:</span><span class="s1"> </span><span class="s10">T</span><span class="s1">[] </span><span class="s5">{</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">result</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> [</span><span class="s9">...</span><span class="s11">arr</span><span class="s1">]</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">for</span><span class="s1"> (</span><span class="s8">let</span><span class="s1"> i </span><span class="s9">=</span><span class="s1"> </span><span class="s12">result</span><span class="s1">.</span><span class="s12">length</span><span class="s1"> </span><span class="s9">-</span><span class="s1"> </span><span class="s14">1</span><span class="s1">; i </span><span class="s9">&gt;</span><span class="s1"> </span><span class="s14">0</span><span class="s1">; i</span><span class="s9">--</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">j</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s12">this</span><span class="s1">.</span><span class="s13">nextInt</span><span class="s1">(i </span><span class="s9">+</span><span class="s1"> </span><span class="s14">1</span><span class="s1">)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">tmp</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s12">result</span><span class="s1">[i]</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">result</span><span class="s5">[i] </span><span class="s9">=</span><span class="s5"> </span><span class="s1">result</span><span class="s5">[</span><span class="s1">j</span><span class="s5">]</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s12">result</span><span class="s1">[</span><span class="s12">j</span><span class="s1">] </span><span class="s9">=</span><span class="s1"> </span><span class="s12">tmp</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">return</span><span class="s5"> </span><span class="s12">result</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
-<p class="p6"><span class="s1">}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p4"><span class="s1">export</span><span class="s11"> </span><span class="s1">default</span><span class="s11"> </span><span class="s8">function</span><span class="s11"> </span><span class="s13">Model</span><span class="s11">({</span></p>
-<p class="p11"><span class="s1"><span class="Apple-converted-space">  </span>modelPath,</span></p>
-<p class="p11"><span class="s1"><span class="Apple-converted-space">  </span>contributions,</span></p>
-<p class="p11"><span class="s1"><span class="Apple-converted-space">  </span>skullPulseTrigger,</span></p>
-<p class="p7"><span class="s11"><span class="Apple-converted-space">  </span>seed </span><span class="s9">=</span><span class="s11"> </span><span class="s14">42</span><span class="s11">, </span><span class="s1">// deterministic seed (can be based on modelPath or user ID)</span></p>
-<p class="p11"><span class="s1">}</span><span class="s9">:</span><span class="s1"> {</span></p>
-<p class="p3"><span class="s11"><span class="Apple-converted-space">  </span></span><span class="s1">modelPath</span><span class="s9">:</span><span class="s11"> </span><span class="s10">string</span></p>
-<p class="p3"><span class="s11"><span class="Apple-converted-space">  </span></span><span class="s1">contributions</span><span class="s9">:</span><span class="s11"> </span><span class="s10">Contribution</span><span class="s11">[]</span></p>
-<p class="p3"><span class="s11"><span class="Apple-converted-space">  </span></span><span class="s1">skullPulseTrigger</span><span class="s9">:</span><span class="s11"> </span><span class="s10">number</span></p>
-<p class="p5"><span class="s11"><span class="Apple-converted-space">  </span></span><span class="s5">seed</span><span class="s9">?:</span><span class="s11"> </span><span class="s1">number</span></p>
-<p class="p11"><span class="s1">}) </span><span class="s5">{</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s1"> { </span><span class="s12">scene</span><span class="s1"> } </span><span class="s9">=</span><span class="s1"> </span><span class="s13">useGLTF</span><span class="s1">(</span><span class="s11">modelPath</span><span class="s1">)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s5"> </span><span class="s12">spinRef</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s13">useRef</span><span class="s5">&lt;</span><span class="s1">THREE</span><span class="s5">.</span><span class="s1">Group</span><span class="s5"> </span><span class="s9">|</span><span class="s5"> </span><span class="s1">null</span><span class="s5">&gt;(</span><span class="s7">null</span><span class="s5">)</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s5"> </span><span class="s12">baseRef</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s13">useRef</span><span class="s5">&lt;</span><span class="s1">THREE</span><span class="s5">.</span><span class="s1">InstancedMesh</span><span class="s5"> </span><span class="s9">|</span><span class="s5"> </span><span class="s1">null</span><span class="s5">&gt;(</span><span class="s7">null</span><span class="s5">)</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s5"> </span><span class="s12">glowRef</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s13">useRef</span><span class="s5">&lt;</span><span class="s1">THREE</span><span class="s5">.</span><span class="s1">InstancedMesh</span><span class="s5"> </span><span class="s9">|</span><span class="s5"> </span><span class="s1">null</span><span class="s5">&gt;(</span><span class="s7">null</span><span class="s5">)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s5"> </span><span class="s1">displayCountRef</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s13">useRef</span><span class="s5">(</span><span class="s14">0</span><span class="s5">)</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s5"> </span><span class="s1">lastPulseTriggerRef</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s13">useRef</span><span class="s5">(</span><span class="s11">skullPulseTrigger</span><span class="s5">)</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s5"> </span><span class="s1">structurePulseRef</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s13">useRef</span><span class="s5">(</span><span class="s14">0</span><span class="s5">)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">baseColor</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s13">useMemo</span><span class="s1">(() </span><span class="s8">=&gt;</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s12">THREE</span><span class="s1">.</span><span class="s13">Color</span><span class="s1">(</span><span class="s6">'#1e3a8a'</span><span class="s1">), [])</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">shimmerColor</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s13">useMemo</span><span class="s1">(() </span><span class="s8">=&gt;</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s12">THREE</span><span class="s1">.</span><span class="s13">Color</span><span class="s1">(</span><span class="s6">'#7dd3fc'</span><span class="s1">), [])</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s5"> </span><span class="s1">contributionColor</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s13">useMemo</span><span class="s5">(() </span><span class="s8">=&gt;</span><span class="s5"> </span><span class="s7">new</span><span class="s5"> </span><span class="s1">THREE</span><span class="s5">.</span><span class="s13">Color</span><span class="s5">(</span><span class="s6">'#ffffff'</span><span class="s5">), [])</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">farColor</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s13">useMemo</span><span class="s1">(() </span><span class="s8">=&gt;</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s12">THREE</span><span class="s1">.</span><span class="s13">Color</span><span class="s1">(</span><span class="s6">'#0f1f4d'</span><span class="s1">), [])</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">tempObject</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s13">useMemo</span><span class="s1">(() </span><span class="s8">=&gt;</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s12">THREE</span><span class="s1">.</span><span class="s13">Object3D</span><span class="s1">(), [])</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">tempColor</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s13">useMemo</span><span class="s1">(() </span><span class="s8">=&gt;</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s12">THREE</span><span class="s1">.</span><span class="s13">Color</span><span class="s1">(), [])</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">tempVec</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s13">useMemo</span><span class="s1">(() </span><span class="s8">=&gt;</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s12">THREE</span><span class="s1">.</span><span class="s13">Vector3</span><span class="s1">(), [])</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">// --------------------------------------------------</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">// AREA-WEIGHTED POINT SAMPLING (deterministic, world-space)</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">// --------------------------------------------------</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">rawPoints</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s13">useMemo</span><span class="s1">(() </span><span class="s8">=&gt;</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s5"> </span><span class="s12">prng</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s7">new</span><span class="s5"> </span><span class="s1">SeededRandom</span><span class="s5">(</span><span class="s11">seed</span><span class="s5">)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">pts</span><span class="s9">:</span><span class="s1"> </span><span class="s10">THREE</span><span class="s1">.</span><span class="s10">Vector3</span><span class="s1">[] </span><span class="s9">=</span><span class="s1"> []</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s5"> </span><span class="s1">minDistance</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s14">0.008</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s5"> </span><span class="s1">bucketSize</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s1">minDistance</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s5"> </span><span class="s12">buckets</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s7">new</span><span class="s5"> </span><span class="s1">Map</span><span class="s5">&lt;</span><span class="s1">string</span><span class="s5">, </span><span class="s1">THREE</span><span class="s5">.</span><span class="s1">Vector3</span><span class="s5">[]&gt;()</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s13">addToBucket</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> (</span><span class="s11">v</span><span class="s9">:</span><span class="s1"> </span><span class="s10">THREE</span><span class="s1">.</span><span class="s10">Vector3</span><span class="s1">) </span><span class="s8">=&gt;</span><span class="s1"> {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s5"> </span><span class="s1">bx</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s1">Math</span><span class="s5">.</span><span class="s13">floor</span><span class="s5">(</span><span class="s11">v</span><span class="s5">.x </span><span class="s9">/</span><span class="s5"> </span><span class="s1">bucketSize</span><span class="s5">)</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s5"> </span><span class="s1">by</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s1">Math</span><span class="s5">.</span><span class="s13">floor</span><span class="s5">(</span><span class="s11">v</span><span class="s5">.y </span><span class="s9">/</span><span class="s5"> </span><span class="s1">bucketSize</span><span class="s5">)</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s5"> </span><span class="s1">bz</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s1">Math</span><span class="s5">.</span><span class="s13">floor</span><span class="s5">(</span><span class="s11">v</span><span class="s5">.z </span><span class="s9">/</span><span class="s5"> </span><span class="s1">bucketSize</span><span class="s5">)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">key</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s6">`</span><span class="s7">${</span><span class="s12">bx</span><span class="s7">}</span><span class="s6">,</span><span class="s7">${</span><span class="s12">by</span><span class="s7">}</span><span class="s6">,</span><span class="s7">${</span><span class="s12">bz</span><span class="s7">}</span><span class="s6">`</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s5"> </span><span class="s1">arr</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s1">buckets</span><span class="s5">.</span><span class="s13">get</span><span class="s5">(</span><span class="s1">key</span><span class="s5">)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">if</span><span class="s1"> (</span><span class="s12">arr</span><span class="s1">) </span><span class="s12">arr</span><span class="s1">.</span><span class="s13">push</span><span class="s1">(</span><span class="s11">v</span><span class="s1">.</span><span class="s13">clone</span><span class="s1">())</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">else</span><span class="s1"> </span><span class="s12">buckets</span><span class="s1">.</span><span class="s13">set</span><span class="s1">(</span><span class="s12">key</span><span class="s1">, [</span><span class="s11">v</span><span class="s1">.</span><span class="s13">clone</span><span class="s1">()])</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s13">isTooClose</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> (</span><span class="s11">v</span><span class="s9">:</span><span class="s1"> </span><span class="s10">THREE</span><span class="s1">.</span><span class="s10">Vector3</span><span class="s1">) </span><span class="s8">=&gt;</span><span class="s1"> {</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s5"> </span><span class="s1">bx</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s1">Math</span><span class="s5">.</span><span class="s13">floor</span><span class="s5">(</span><span class="s11">v</span><span class="s5">.x </span><span class="s9">/</span><span class="s5"> </span><span class="s1">bucketSize</span><span class="s5">)</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s5"> </span><span class="s1">by</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s1">Math</span><span class="s5">.</span><span class="s13">floor</span><span class="s5">(</span><span class="s11">v</span><span class="s5">.y </span><span class="s9">/</span><span class="s5"> </span><span class="s1">bucketSize</span><span class="s5">)</span></p>
-<p class="p10"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s5"> </span><span class="s1">bz</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s1">Math</span><span class="s5">.</span><span class="s13">floor</span><span class="s5">(</span><span class="s11">v</span><span class="s5">.z </span><span class="s9">/</span><span class="s5"> </span><span class="s1">bucketSize</span><span class="s5">)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">for</span><span class="s1"> (</span><span class="s8">let</span><span class="s1"> dx </span><span class="s9">=</span><span class="s1"> </span><span class="s9">-</span><span class="s14">1</span><span class="s1">; dx </span><span class="s9">&lt;=</span><span class="s1"> </span><span class="s14">1</span><span class="s1">; dx</span><span class="s9">++</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">for</span><span class="s1"> (</span><span class="s8">let</span><span class="s1"> dy </span><span class="s9">=</span><span class="s1"> </span><span class="s9">-</span><span class="s14">1</span><span class="s1">; dy </span><span class="s9">&lt;=</span><span class="s1"> </span><span class="s14">1</span><span class="s1">; dy</span><span class="s9">++</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s3">for</span><span class="s1"> (</span><span class="s8">let</span><span class="s1"> dz </span><span class="s9">=</span><span class="s1"> </span><span class="s9">-</span><span class="s14">1</span><span class="s1">; dz </span><span class="s9">&lt;=</span><span class="s1"> </span><span class="s14">1</span><span class="s1">; dz</span><span class="s9">++</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">key</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s6">`</span><span class="s7">${</span><span class="s12">bx</span><span class="s9"> + </span><span class="s1">dx</span><span class="s7">}</span><span class="s6">,</span><span class="s7">${</span><span class="s12">by</span><span class="s9"> + </span><span class="s1">dy</span><span class="s7">}</span><span class="s6">,</span><span class="s7">${</span><span class="s12">bz</span><span class="s9"> + </span><span class="s1">dz</span><span class="s7">}</span><span class="s6">`</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">arr</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s12">buckets</span><span class="s1">.</span><span class="s13">get</span><span class="s1">(</span><span class="s12">key</span><span class="s1">)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">if</span><span class="s1"> (</span><span class="s9">!</span><span class="s12">arr</span><span class="s1">) </span><span class="s3">continue</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">for</span><span class="s1"> (</span><span class="s8">let</span><span class="s1"> j </span><span class="s9">=</span><span class="s1"> </span><span class="s14">0</span><span class="s1">; j </span><span class="s9">&lt;</span><span class="s1"> </span><span class="s12">arr</span><span class="s1">.</span><span class="s12">length</span><span class="s1">; j</span><span class="s9">++</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s3">if</span><span class="s1"> (</span><span class="s11">v</span><span class="s1">.</span><span class="s13">distanceTo</span><span class="s1">(</span><span class="s12">arr</span><span class="s1">[j]) </span><span class="s9">&lt;</span><span class="s1"> </span><span class="s12">minDistance</span><span class="s1">) </span><span class="s3">return</span><span class="s1"> </span><span class="s7">true</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">return</span><span class="s1"> </span><span class="s7">false</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">// collect triangle areas for area-weighted sampling</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s5"> </span><span class="s12">triangles</span><span class="s9">:</span><span class="s5"> { a</span><span class="s9">:</span><span class="s5"> </span><span class="s1">THREE</span><span class="s5">.</span><span class="s1">Vector3</span><span class="s5">; b</span><span class="s9">:</span><span class="s5"> </span><span class="s1">THREE</span><span class="s5">.</span><span class="s1">Vector3</span><span class="s5">; c</span><span class="s9">:</span><span class="s5"> </span><span class="s1">THREE</span><span class="s5">.</span><span class="s1">Vector3</span><span class="s5">; mesh</span><span class="s9">:</span><span class="s5"> </span><span class="s1">any</span><span class="s5"> }[] </span><span class="s9">=</span><span class="s5"> []</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">let</span><span class="s1"> totalArea </span><span class="s9">=</span><span class="s1"> </span><span class="s14">0</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s12">scene</span><span class="s1">.</span><span class="s13">traverse</span><span class="s1">((</span><span class="s11">child</span><span class="s9">:</span><span class="s1"> </span><span class="s10">any</span><span class="s1">) </span><span class="s8">=&gt;</span><span class="s1"> {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">if</span><span class="s1"> (</span><span class="s11">child</span><span class="s1">.isMesh </span><span class="s9">&amp;&amp;</span><span class="s1"> </span><span class="s11">child</span><span class="s1">.geometry?.attributes?.position) {</span></p>
-<p class="p12"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s11">child</span><span class="s5">.</span><span class="s1">updateWorldMatrix</span><span class="s5">(</span><span class="s7">true</span><span class="s5">, </span><span class="s7">false</span><span class="s5">)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">pos</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s11">child</span><span class="s1">.geometry.attributes.position</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">indices</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s11">child</span><span class="s1">.geometry.index</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">// if indexed geometry</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">if</span><span class="s1"> (indices) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s3">for</span><span class="s1"> (</span><span class="s8">let</span><span class="s1"> i </span><span class="s9">=</span><span class="s1"> </span><span class="s14">0</span><span class="s1">; i </span><span class="s9">&lt;</span><span class="s1"> indices.count; i </span><span class="s9">+=</span><span class="s1"> </span><span class="s14">3</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">i0</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> indices.</span><span class="s13">getX</span><span class="s1">(i)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">i1</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> indices.</span><span class="s13">getX</span><span class="s1">(i </span><span class="s9">+</span><span class="s1"> </span><span class="s14">1</span><span class="s1">)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">i2</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> indices.</span><span class="s13">getX</span><span class="s1">(i </span><span class="s9">+</span><span class="s1"> </span><span class="s14">2</span><span class="s1">)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">a</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> tempVec</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span>.</span><span class="s13">set</span><span class="s1">(pos.</span><span class="s13">getX</span><span class="s1">(i0), pos.</span><span class="s13">getY</span><span class="s1">(i0), pos.</span><span class="s13">getZ</span><span class="s1">(i0))</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span>.</span><span class="s13">applyMatrix4</span><span class="s1">(child.matrixWorld)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">b</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s12">THREE</span><span class="s1">.</span><span class="s13">Vector3</span><span class="s1">(</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span>pos.</span><span class="s13">getX</span><span class="s1">(i1),</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span>pos.</span><span class="s13">getY</span><span class="s1">(i1),</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span>pos.</span><span class="s13">getZ</span><span class="s1">(i1)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span>).</span><span class="s13">applyMatrix4</span><span class="s1">(child.matrixWorld)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">c</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s12">THREE</span><span class="s1">.</span><span class="s13">Vector3</span><span class="s1">(</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span>pos.</span><span class="s13">getX</span><span class="s1">(i2),</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span>pos.</span><span class="s13">getY</span><span class="s1">(i2),</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span>pos.</span><span class="s13">getZ</span><span class="s1">(i2)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span>).</span><span class="s13">applyMatrix4</span><span class="s1">(child.matrixWorld)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">// compute triangle area</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">ab</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s12">THREE</span><span class="s1">.</span><span class="s13">Vector3</span><span class="s1">().</span><span class="s13">subVectors</span><span class="s1">(b, a)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">ac</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s12">THREE</span><span class="s1">.</span><span class="s13">Vector3</span><span class="s1">().</span><span class="s13">subVectors</span><span class="s1">(c, a)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">area</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> ab.</span><span class="s13">cross</span><span class="s1">(ac).</span><span class="s13">length</span><span class="s1">() </span><span class="s9">*</span><span class="s1"> </span><span class="s14">0.5</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">if</span><span class="s1"> (area </span><span class="s9">&gt;</span><span class="s1"> </span><span class="s14">1e-8</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span>triangles.</span><span class="s13">push</span><span class="s1">({</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s15">a:</span><span class="s1"> a.</span><span class="s13">clone</span><span class="s1">(),</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">                </span>b,</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">                </span>c,</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s15">mesh:</span><span class="s1"> child,</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span>})</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span>totalArea </span><span class="s9">+=</span><span class="s1"> area</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>} </span><span class="s3">else</span><span class="s1"> {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s1">// non-indexed: sample vertices directly</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s3">for</span><span class="s1"> (</span><span class="s8">let</span><span class="s1"> i </span><span class="s9">=</span><span class="s1"> </span><span class="s14">0</span><span class="s1">; i </span><span class="s9">&lt;</span><span class="s1"> pos.count; i</span><span class="s9">++</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">v</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> tempVec</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span>.</span><span class="s13">set</span><span class="s1">(pos.</span><span class="s13">getX</span><span class="s1">(i), pos.</span><span class="s13">getY</span><span class="s1">(i), pos.</span><span class="s13">getZ</span><span class="s1">(i))</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span>.</span><span class="s13">applyMatrix4</span><span class="s1">(child.matrixWorld)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">if</span><span class="s1"> (</span><span class="s9">!</span><span class="s13">isTooClose</span><span class="s1">(v)) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span>pts.</span><span class="s13">push</span><span class="s1">(v.</span><span class="s13">clone</span><span class="s1">())</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">              </span></span><span class="s13">addToBucket</span><span class="s1">(v)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>})</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">// area-weighted sample from triangles</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">if</span><span class="s1"> (triangles.</span><span class="s12">length</span><span class="s1"> </span><span class="s9">&gt;</span><span class="s1"> </span><span class="s14">0</span><span class="s1">) {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">// target: sample roughly one point per 0.001 units² of area (tune this)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">targetSampleCount</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> Math.</span><span class="s13">max</span><span class="s1">(</span><span class="s14">100</span><span class="s1">, Math.</span><span class="s13">floor</span><span class="s1">(totalArea </span><span class="s9">/</span><span class="s1"> </span><span class="s14">0.001</span><span class="s1">))</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">for</span><span class="s1"> (</span><span class="s8">let</span><span class="s1"> s </span><span class="s9">=</span><span class="s1"> </span><span class="s14">0</span><span class="s1">; s </span><span class="s9">&lt;</span><span class="s1"> targetSampleCount; s</span><span class="s9">++</span><span class="s1">) {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">// pick triangle weighted by area</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">let</span><span class="s1"> r </span><span class="s9">=</span><span class="s1"> prng.</span><span class="s13">next</span><span class="s1">() </span><span class="s9">*</span><span class="s1"> totalArea</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s8">let</span><span class="s5"> tri</span><span class="s9">:</span><span class="s5"> { </span><span class="s11">a</span><span class="s9">:</span><span class="s5"> </span><span class="s1">THREE</span><span class="s5">.</span><span class="s1">Vector3</span><span class="s5">; </span><span class="s11">b</span><span class="s9">:</span><span class="s5"> </span><span class="s1">THREE</span><span class="s5">.</span><span class="s1">Vector3</span><span class="s5">; </span><span class="s11">c</span><span class="s9">:</span><span class="s5"> </span><span class="s1">THREE</span><span class="s5">.</span><span class="s1">Vector3</span><span class="s5"> } </span><span class="s9">|</span><span class="s5"> </span><span class="s1">null</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s7">null</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">let</span><span class="s1"> cumArea </span><span class="s9">=</span><span class="s1"> </span><span class="s14">0</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">for</span><span class="s1"> (</span><span class="s8">let</span><span class="s1"> t </span><span class="s9">=</span><span class="s1"> </span><span class="s14">0</span><span class="s1">; t </span><span class="s9">&lt;</span><span class="s1"> triangles.</span><span class="s12">length</span><span class="s1">; t</span><span class="s9">++</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">a</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> triangles[t]</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">ab</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s12">THREE</span><span class="s1">.</span><span class="s13">Vector3</span><span class="s1">().</span><span class="s13">subVectors</span><span class="s1">(a.b, a.a)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">ac</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s12">THREE</span><span class="s1">.</span><span class="s13">Vector3</span><span class="s1">().</span><span class="s13">subVectors</span><span class="s1">(a.c, a.a)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">area</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> ab.</span><span class="s13">cross</span><span class="s1">(ac).</span><span class="s13">length</span><span class="s1">() </span><span class="s9">*</span><span class="s1"> </span><span class="s14">0.5</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>cumArea </span><span class="s9">+=</span><span class="s1"> area</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s3">if</span><span class="s1"> (r </span><span class="s9">&lt;=</span><span class="s1"> cumArea) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span>tri </span><span class="s9">=</span><span class="s1"> a</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">break</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">if</span><span class="s1"> (</span><span class="s9">!</span><span class="s1">tri) tri </span><span class="s9">=</span><span class="s1"> triangles[triangles.</span><span class="s12">length</span><span class="s1"> </span><span class="s9">-</span><span class="s1"> </span><span class="s14">1</span><span class="s1">]</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">// random point on triangle (barycentric)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">r1</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> Math.</span><span class="s13">sqrt</span><span class="s1">(prng.</span><span class="s13">next</span><span class="s1">())</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">r2</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> prng.</span><span class="s13">next</span><span class="s1">()</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">u</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s14">1</span><span class="s1"> </span><span class="s9">-</span><span class="s1"> r1</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">v</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> r1 </span><span class="s9">*</span><span class="s1"> (</span><span class="s14">1</span><span class="s1"> </span><span class="s9">-</span><span class="s1"> r2)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">w</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> r1 </span><span class="s9">*</span><span class="s1"> r2</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">pt</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s12">THREE</span><span class="s1">.</span><span class="s13">Vector3</span><span class="s1">()</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>.</span><span class="s13">copy</span><span class="s1">(tri.a)</span></p>
-<p class="p12"><span class="s5"><span class="Apple-converted-space">          </span>.</span><span class="s1">multiplyScalar</span><span class="s5">(u)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>.</span><span class="s13">addScaledVector</span><span class="s1">(tri.b, v)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>.</span><span class="s13">addScaledVector</span><span class="s1">(tri.c, w)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">if</span><span class="s1"> (</span><span class="s9">!</span><span class="s13">isTooClose</span><span class="s1">(pt)) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>pts.</span><span class="s13">push</span><span class="s1">(pt)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s13">addToBucket</span><span class="s1">(pt)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">// shuffle with seeded PRNG</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">prng2</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s13">SeededRandom</span><span class="s1">(seed </span><span class="s9">+</span><span class="s1"> </span><span class="s14">1</span><span class="s1">)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>pts.</span><span class="s13">sort</span><span class="s1">(() </span><span class="s8">=&gt;</span><span class="s1"> prng2.</span><span class="s13">next</span><span class="s1">() </span><span class="s9">-</span><span class="s1"> </span><span class="s14">0.5</span><span class="s1">)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">return</span><span class="s1"> pts</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>}, [scene, seed])</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">// --------------------------------------------------</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">// CONTRIBUTION-BASED ORDER (seeded, shuffled index pool)</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">// --------------------------------------------------</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">points</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s13">useMemo</span><span class="s1">(() </span><span class="s8">=&gt;</span><span class="s1"> {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">if</span><span class="s1"> (rawPoints.</span><span class="s12">length</span><span class="s1"> </span><span class="s9">===</span><span class="s1"> </span><span class="s14">0</span><span class="s1">) </span><span class="s3">return</span><span class="s1"> []</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">prng</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s13">SeededRandom</span><span class="s1">(seed </span><span class="s9">+</span><span class="s1"> </span><span class="s14">2</span><span class="s1">)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">ordered</span><span class="s9">:</span><span class="s1"> </span><span class="s10">THREE</span><span class="s1">.</span><span class="s10">Vector3</span><span class="s1">[] </span><span class="s9">=</span><span class="s1"> []</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">used</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s7">new</span><span class="s1"> </span><span class="s13">Set</span><span class="s1">&lt;</span><span class="s10">number</span><span class="s1">&gt;()</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">// create a shuffled index pool and a pointer to pop from</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">indices</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> rawPoints.</span><span class="s13">map</span><span class="s1">((</span><span class="s11">_</span><span class="s1">, </span><span class="s11">i</span><span class="s1">) </span><span class="s8">=&gt;</span><span class="s1"> i)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>indices.</span><span class="s13">sort</span><span class="s1">(() </span><span class="s8">=&gt;</span><span class="s1"> prng.</span><span class="s13">next</span><span class="s1">() </span><span class="s9">-</span><span class="s1"> </span><span class="s14">0.5</span><span class="s1">)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">let</span><span class="s1"> poolPos </span><span class="s9">=</span><span class="s1"> </span><span class="s14">0</span></p>
-<p class="p12"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s5"> </span><span class="s1">getNextUnusedIndexFromPool</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> () </span><span class="s8">=&gt;</span><span class="s5"> {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">while</span><span class="s1"> (poolPos </span><span class="s9">&lt;</span><span class="s1"> indices.</span><span class="s12">length</span><span class="s1"> </span><span class="s9">&amp;&amp;</span><span class="s1"> used.</span><span class="s13">has</span><span class="s1">(indices[poolPos])) poolPos</span><span class="s9">++</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">if</span><span class="s1"> (poolPos </span><span class="s9">&gt;=</span><span class="s1"> indices.</span><span class="s12">length</span><span class="s1">) {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">// fallback: find any unused</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">for</span><span class="s1"> (</span><span class="s8">let</span><span class="s1"> k </span><span class="s9">=</span><span class="s1"> </span><span class="s14">0</span><span class="s1">; k </span><span class="s9">&lt;</span><span class="s1"> rawPoints.</span><span class="s12">length</span><span class="s1">; k</span><span class="s9">++</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s3">if</span><span class="s1"> (</span><span class="s9">!</span><span class="s1">used.</span><span class="s13">has</span><span class="s1">(k)) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span>used.</span><span class="s13">add</span><span class="s1">(k)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">return</span><span class="s1"> k</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">return</span><span class="s1"> rawPoints.</span><span class="s12">length</span><span class="s1"> </span><span class="s9">-</span><span class="s1"> </span><span class="s14">1</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">idx</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> indices[poolPos</span><span class="s9">++</span><span class="s1">]</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>used.</span><span class="s13">add</span><span class="s1">(idx)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">return</span><span class="s1"> idx</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">for</span><span class="s1"> (</span><span class="s8">const</span><span class="s1"> </span><span class="s12">c</span><span class="s1"> </span><span class="s7">of</span><span class="s1"> contributions) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">if</span><span class="s1"> (c.quantity </span><span class="s9">===</span><span class="s1"> </span><span class="s14">1</span><span class="s1">) {</span></p>
-<p class="p12"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s5"> </span><span class="s12">idx</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s1">getNextUnusedIndexFromPool</span><span class="s5">()</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>ordered.</span><span class="s13">push</span><span class="s1">(rawPoints[idx])</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">continue</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">// MULTI → cluster around an anchor</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s8">let</span><span class="s1"> anchorIndex </span><span class="s9">=</span><span class="s1"> prng.</span><span class="s13">nextInt</span><span class="s1">(rawPoints.</span><span class="s12">length</span><span class="s1">)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">if</span><span class="s1"> (poolPos </span><span class="s9">&lt;</span><span class="s1"> indices.</span><span class="s12">length</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">candidate</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> indices[Math.</span><span class="s13">min</span><span class="s1">(poolPos, indices.</span><span class="s12">length</span><span class="s1"> </span><span class="s9">-</span><span class="s1"> </span><span class="s14">1</span><span class="s1">)]</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">if</span><span class="s1"> (</span><span class="s9">!</span><span class="s1">used.</span><span class="s13">has</span><span class="s1">(candidate)) anchorIndex </span><span class="s9">=</span><span class="s1"> candidate</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">anchor</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> rawPoints[anchorIndex]</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">nearby</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> rawPoints</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>.</span><span class="s13">map</span><span class="s1">((</span><span class="s11">p</span><span class="s1">, </span><span class="s11">i</span><span class="s1">) </span><span class="s8">=&gt;</span><span class="s1"> ({ p, i, </span><span class="s15">d:</span><span class="s1"> p.</span><span class="s13">distanceToSquared</span><span class="s1">(anchor) }))</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>.</span><span class="s13">sort</span><span class="s1">((</span><span class="s11">a</span><span class="s1">, </span><span class="s11">b</span><span class="s1">) </span><span class="s8">=&gt;</span><span class="s1"> a.d </span><span class="s9">-</span><span class="s1"> b.d)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s8">let</span><span class="s1"> added </span><span class="s9">=</span><span class="s1"> </span><span class="s14">0</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">for</span><span class="s1"> (</span><span class="s8">let</span><span class="s1"> i </span><span class="s9">=</span><span class="s1"> </span><span class="s14">0</span><span class="s1">; i </span><span class="s9">&lt;</span><span class="s1"> nearby.</span><span class="s12">length</span><span class="s1"> </span><span class="s9">&amp;&amp;</span><span class="s1"> added </span><span class="s9">&lt;</span><span class="s1"> c.quantity; i</span><span class="s9">++</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">idx</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> nearby[i].i</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">if</span><span class="s1"> (</span><span class="s9">!</span><span class="s1">used.</span><span class="s13">has</span><span class="s1">(idx)) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>used.</span><span class="s13">add</span><span class="s1">(idx)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>ordered.</span><span class="s13">push</span><span class="s1">(nearby[i].p)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>added</span><span class="s9">++</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">// if cluster couldn't find enough, fill from pool</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">while</span><span class="s1"> (added </span><span class="s9">&lt;</span><span class="s1"> c.quantity) {</span></p>
-<p class="p12"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s8">const</span><span class="s5"> </span><span class="s12">idx</span><span class="s5"> </span><span class="s9">=</span><span class="s5"> </span><span class="s1">getNextUnusedIndexFromPool</span><span class="s5">()</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>ordered.</span><span class="s13">push</span><span class="s1">(rawPoints[idx])</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>added</span><span class="s9">++</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">return</span><span class="s1"> ordered</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>}, [rawPoints, contributions, seed])</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">// --------------------------------------------------</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">// Set dynamic usage for instance buffers once mounted</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">// --------------------------------------------------</span></p>
-<p class="p12"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">useEffect</span><span class="s5">(() </span><span class="s8">=&gt;</span><span class="s5"> {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">base</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> baseRef.current</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">glow</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> glowRef.current</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">if</span><span class="s1"> (base?.instanceMatrix) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">try</span><span class="s1"> {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>base.instanceMatrix.</span><span class="s13">setUsage</span><span class="s1">(</span><span class="s12">THREE</span><span class="s1">.DynamicDrawUsage)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>} </span><span class="s3">catch</span><span class="s1"> (e) {</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">// ignore if not supported</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">if</span><span class="s1"> (base.instanceColor) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">try</span><span class="s1"> {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>base.instanceColor.</span><span class="s13">setUsage</span><span class="s1">(</span><span class="s12">THREE</span><span class="s1">.DynamicDrawUsage)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>} </span><span class="s3">catch</span><span class="s1"> (e) {}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">if</span><span class="s1"> (glow?.instanceMatrix) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">try</span><span class="s1"> {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>glow.instanceMatrix.</span><span class="s13">setUsage</span><span class="s1">(</span><span class="s12">THREE</span><span class="s1">.DynamicDrawUsage)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>} </span><span class="s3">catch</span><span class="s1"> (e) {}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">if</span><span class="s1"> (glow.instanceColor) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">try</span><span class="s1"> {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span>glow.instanceColor.</span><span class="s13">setUsage</span><span class="s1">(</span><span class="s12">THREE</span><span class="s1">.DynamicDrawUsage)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>} </span><span class="s3">catch</span><span class="s1"> (e) {}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">// eslint-disable-next-line react-hooks/exhaustive-deps</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>}, [])</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">// --------------------------------------------------</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">// Frame loop</span></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">// --------------------------------------------------</span></p>
-<p class="p11"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s13">useFrame</span><span class="s5">((</span><span class="s1">state</span><span class="s5">, </span><span class="s1">delta</span><span class="s5">) </span><span class="s8">=&gt;</span><span class="s5"> {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">spin</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> spinRef.current</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">base</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> baseRef.current</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">glow</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> glowRef.current</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">if</span><span class="s1"> (</span><span class="s9">!</span><span class="s1">spin </span><span class="s9">||</span><span class="s1"> </span><span class="s9">!</span><span class="s1">base </span><span class="s9">||</span><span class="s1"> </span><span class="s9">!</span><span class="s1">glow) </span><span class="s3">return</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>spin.rotation.z </span><span class="s9">=</span><span class="s1"> state.clock.elapsedTime </span><span class="s9">*</span><span class="s1"> </span><span class="s14">0.02</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">if</span><span class="s1"> (lastPulseTriggerRef.current </span><span class="s9">!==</span><span class="s1"> skullPulseTrigger) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>lastPulseTriggerRef.current </span><span class="s9">=</span><span class="s1"> skullPulseTrigger</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>structurePulseRef.current </span><span class="s9">=</span><span class="s1"> </span><span class="s14">1</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>structurePulseRef.current </span><span class="s9">=</span><span class="s1"> Math.</span><span class="s13">max</span><span class="s1">(</span><span class="s14">0</span><span class="s1">, structurePulseRef.current </span><span class="s9">-</span><span class="s1"> delta </span><span class="s9">*</span><span class="s1"> </span><span class="s14">0.9</span><span class="s1">)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">targetCount</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> Math.</span><span class="s13">min</span><span class="s1">(points.</span><span class="s12">length</span><span class="s1">, </span><span class="s14">50000</span><span class="s1">)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">// grow/shrink display count smoothly (clamped)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">if</span><span class="s1"> (displayCountRef.current </span><span class="s9">&lt;</span><span class="s1"> targetCount) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>displayCountRef.current </span><span class="s9">=</span><span class="s1"> Math.</span><span class="s13">min</span><span class="s1">(displayCountRef.current </span><span class="s9">+</span><span class="s1"> </span><span class="s14">6</span><span class="s1">, targetCount)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>} </span><span class="s3">else</span><span class="s1"> </span><span class="s3">if</span><span class="s1"> (displayCountRef.current </span><span class="s9">&gt;</span><span class="s1"> targetCount) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>displayCountRef.current </span><span class="s9">=</span><span class="s1"> targetCount</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s8">let</span><span class="s1"> glowCount </span><span class="s9">=</span><span class="s1"> </span><span class="s14">0</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">for</span><span class="s1"> (</span><span class="s8">let</span><span class="s1"> i </span><span class="s9">=</span><span class="s1"> </span><span class="s14">0</span><span class="s1">; i </span><span class="s9">&lt;</span><span class="s1"> displayCountRef.current </span><span class="s9">&amp;&amp;</span><span class="s1"> i </span><span class="s9">&lt;</span><span class="s1"> targetCount; i</span><span class="s9">++</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">p</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> points[i]</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">pulse</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> Math.</span><span class="s13">sin</span><span class="s1">(state.clock.elapsedTime </span><span class="s9">*</span><span class="s1"> </span><span class="s14">0.8</span><span class="s1"> </span><span class="s9">+</span><span class="s1"> i) </span><span class="s9">*</span><span class="s1"> </span><span class="s14">0.5</span><span class="s1"> </span><span class="s9">+</span><span class="s1"> </span><span class="s14">0.5</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">scale</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> </span><span class="s14">1</span><span class="s1"> </span><span class="s9">+</span><span class="s1"> pulse </span><span class="s9">*</span><span class="s1"> </span><span class="s14">0.15</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>tempObject.position.</span><span class="s13">copy</span><span class="s1">(p)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>tempObject.scale.</span><span class="s13">setScalar</span><span class="s1">(scale </span><span class="s9">*</span><span class="s1"> </span><span class="s14">0.9</span><span class="s1">)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>tempObject.</span><span class="s13">updateMatrix</span><span class="s1">()</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>base.</span><span class="s13">setMatrixAt</span><span class="s1">(i, tempObject.matrix)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>tempColor.</span><span class="s13">copy</span><span class="s1">(baseColor).</span><span class="s13">lerp</span><span class="s1">(shimmerColor, pulse)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>base.</span><span class="s13">setColorAt</span><span class="s1">(i, tempColor)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p7"><span class="s5"><span class="Apple-converted-space">      </span></span><span class="s1">// glow</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s8">const</span><span class="s1"> </span><span class="s12">glowStrength</span><span class="s1"> </span><span class="s9">=</span><span class="s1"> pulse </span><span class="s9">*</span><span class="s1"> </span><span class="s14">0.5</span><span class="s1"> </span><span class="s9">+</span><span class="s1"> structurePulseRef.current </span><span class="s9">*</span><span class="s1"> </span><span class="s14">1.5</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s3">if</span><span class="s1"> (glowStrength </span><span class="s9">&gt;</span><span class="s1"> </span><span class="s14">0.1</span><span class="s1">) {</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>tempObject.scale.</span><span class="s13">setScalar</span><span class="s1">(scale </span><span class="s9">*</span><span class="s1"> </span><span class="s14">1.4</span><span class="s1">)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>tempObject.</span><span class="s13">updateMatrix</span><span class="s1">()</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>glow.</span><span class="s13">setMatrixAt</span><span class="s1">(glowCount, tempObject.matrix)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>tempColor.</span><span class="s13">copy</span><span class="s1">(shimmerColor)</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>glow.</span><span class="s13">setColorAt</span><span class="s1">(glowCount, tempColor)</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span>glowCount</span><span class="s9">++</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>base.count </span><span class="s9">=</span><span class="s1"> displayCountRef.current</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>glow.count </span><span class="s9">=</span><span class="s1"> glowCount</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>base.instanceMatrix.needsUpdate </span><span class="s9">=</span><span class="s1"> </span><span class="s7">true</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span>glow.instanceMatrix.needsUpdate </span><span class="s9">=</span><span class="s1"> </span><span class="s7">true</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">if</span><span class="s1"> (base.instanceColor) base.instanceColor.needsUpdate </span><span class="s9">=</span><span class="s1"> </span><span class="s7">true</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">if</span><span class="s1"> (glow.instanceColor) glow.instanceColor.needsUpdate </span><span class="s9">=</span><span class="s1"> </span><span class="s7">true</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>})</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s1">return</span><span class="s5"> (</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s16">&lt;</span><span class="s17">group</span><span class="s1"> </span><span class="s15">rotation</span><span class="s9">=</span><span class="s8">{</span><span class="s1">[Math.</span><span class="s12">PI</span><span class="s1"> </span><span class="s9">/</span><span class="s1"> </span><span class="s14">2</span><span class="s1">, </span><span class="s14">0</span><span class="s1">, </span><span class="s14">0</span><span class="s1">]</span><span class="s8">}</span><span class="s16">&gt;</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s16">&lt;</span><span class="s17">group</span><span class="s1"> </span><span class="s15">ref</span><span class="s9">=</span><span class="s8">{</span><span class="s1">spinRef</span><span class="s8">}</span><span class="s16">&gt;</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s16">&lt;</span><span class="s17">instancedMesh</span><span class="s1"> </span><span class="s15">ref</span><span class="s9">=</span><span class="s8">{</span><span class="s1">baseRef</span><span class="s8">}</span><span class="s1"> </span><span class="s15">args</span><span class="s9">=</span><span class="s8">{</span><span class="s1">[</span><span class="s7">undefined</span><span class="s1">, </span><span class="s7">undefined</span><span class="s1">, </span><span class="s14">50000</span><span class="s1">]</span><span class="s8">}</span><span class="s16">&gt;</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s16">&lt;</span><span class="s17">sphereGeometry</span><span class="s1"> </span><span class="s15">args</span><span class="s9">=</span><span class="s8">{</span><span class="s1">[</span><span class="s14">0.003</span><span class="s1">, </span><span class="s14">20</span><span class="s1">, </span><span class="s14">20</span><span class="s1">]</span><span class="s8">}</span><span class="s1"> </span><span class="s16">/&gt;</span></p>
-<p class="p13"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s16">&lt;</span><span class="s1">meshPhysicalMaterial</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s15">emissive</span><span class="s9">=</span><span class="s6">"#3567f1"</span></p>
-<p class="p14"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">emissiveIntensity</span><span class="s9">=</span><span class="s8">{</span><span class="s14">0.7</span><span class="s8">}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s15">roughness</span><span class="s9">=</span><span class="s8">{</span><span class="s14">0.4</span><span class="s8">}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s15">metalness</span><span class="s9">=</span><span class="s8">{</span><span class="s14">0.7</span><span class="s8">}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s15">vertexColors</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s16">/&gt;</span></p>
-<p class="p13"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s16">&lt;/</span><span class="s1">instancedMesh</span><span class="s16">&gt;</span></p>
-<p class="p2"><span class="s2"></span><br></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s16">&lt;</span><span class="s17">instancedMesh</span><span class="s1"> </span><span class="s15">ref</span><span class="s9">=</span><span class="s8">{</span><span class="s1">glowRef</span><span class="s8">}</span><span class="s1"> </span><span class="s15">args</span><span class="s9">=</span><span class="s8">{</span><span class="s1">[</span><span class="s7">undefined</span><span class="s1">, </span><span class="s7">undefined</span><span class="s1">, </span><span class="s14">50000</span><span class="s1">]</span><span class="s8">}</span><span class="s16">&gt;</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s16">&lt;</span><span class="s17">sphereGeometry</span><span class="s1"> </span><span class="s15">args</span><span class="s9">=</span><span class="s8">{</span><span class="s1">[</span><span class="s14">0.003</span><span class="s1">, </span><span class="s14">20</span><span class="s1">, </span><span class="s14">20</span><span class="s1">]</span><span class="s8">}</span><span class="s1"> </span><span class="s16">/&gt;</span></p>
-<p class="p13"><span class="s5"><span class="Apple-converted-space">          </span></span><span class="s16">&lt;</span><span class="s1">meshBasicMaterial</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s15">transparent</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s15">opacity</span><span class="s9">=</span><span class="s8">{</span><span class="s14">0.5</span><span class="s8">}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s15">blending</span><span class="s9">=</span><span class="s8">{</span><span class="s12">THREE</span><span class="s1">.AdditiveBlending</span><span class="s8">}</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s15">vertexColors</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">          </span></span><span class="s16">/&gt;</span></p>
-<p class="p13"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s16">&lt;/</span><span class="s1">instancedMesh</span><span class="s16">&gt;</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">      </span></span><span class="s16">&lt;/</span><span class="s17">group</span><span class="s16">&gt;</span></p>
-<p class="p13"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s16">&lt;/</span><span class="s1">group</span><span class="s16">&gt;</span></p>
-<p class="p3"><span class="s1"><span class="Apple-converted-space">  </span>)</span></p>
-<p class="p3"><span class="s1">}</span></p>
+<p class="p1">'use client'</p>
+<p class="p2"><br></p>
+<p class="p1">import { useGLTF } from '@react-three/drei'</p>
+<p class="p1">import { useMemo, useRef, useEffect } from 'react'</p>
+<p class="p1">import { useFrame } from '@react-three/fiber'</p>
+<p class="p1">import * as THREE from 'three'</p>
+<p class="p2"><br></p>
+<p class="p1">type Contribution = {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>id: string</p>
+<p class="p1"><span class="Apple-converted-space">  </span>createdAt: number</p>
+<p class="p1"><span class="Apple-converted-space">  </span>alias: string</p>
+<p class="p1"><span class="Apple-converted-space">  </span>emoji: string</p>
+<p class="p1"><span class="Apple-converted-space">  </span>message: string</p>
+<p class="p1"><span class="Apple-converted-space">  </span>quantity: number</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">export default function Model({</p>
+<p class="p1"><span class="Apple-converted-space">  </span>modelPath,</p>
+<p class="p1"><span class="Apple-converted-space">  </span>contributions,</p>
+<p class="p1"><span class="Apple-converted-space">  </span>skullPulseTrigger,</p>
+<p class="p1">}: {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>modelPath: string</p>
+<p class="p1"><span class="Apple-converted-space">  </span>contributions: Contribution[]</p>
+<p class="p1"><span class="Apple-converted-space">  </span>skullPulseTrigger: number</p>
+<p class="p1">}) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const { scene } = useGLTF(modelPath)</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const spinRef = useRef&lt;THREE.Group&gt;(null!)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const baseRef = useRef&lt;THREE.InstancedMesh&gt;(null!)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const glowRef = useRef&lt;THREE.InstancedMesh&gt;(null!)</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const baseMaterialRef = useRef&lt;THREE.MeshPhysicalMaterial&gt;(null!)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const glowMaterialRef = useRef&lt;THREE.MeshBasicMaterial&gt;(null!)</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const displayCountRef = useRef(0)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const contributionPulseRef = useRef&lt;number[]&gt;([])</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const phaseOffsetsRef = useRef&lt;number[]&gt;([])</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const speedOffsetsRef = useRef&lt;number[]&gt;([])</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const lastPulseTriggerRef = useRef(skullPulseTrigger)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const structurePulseRef = useRef(0)</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const baseColor = useMemo(() =&gt; new THREE.Color('#1e3a8a'), [])</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const shimmerColor = useMemo(() =&gt; new THREE.Color('#7dd3fc'), [])</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const contributionColor = useMemo(() =&gt; new THREE.Color('#ffffff'), [])</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const farColor = useMemo(() =&gt; new THREE.Color('#0f1f4d'), [])</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const tempObject = useMemo(() =&gt; new THREE.Object3D(), [])</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const tempColor = useMemo(() =&gt; new THREE.Color(), [])</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// --------------------------------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// POINT SAMPLING</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// --------------------------------------------------</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const rawPoints = useMemo(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const pts: THREE.Vector3[] = []</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const minDistance = 0.008</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>scene.traverse((child: any) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (child.isMesh) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const pos = child.geometry.attributes.position</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>for (let i = 0; i &lt; pos.count; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const v = new THREE.Vector3(</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pos.getX(i),</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pos.getY(i),</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pos.getZ(i)</p>
+<p class="p1"><span class="Apple-converted-space">          </span>)</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>let tooClose = false</p>
+<p class="p1"><span class="Apple-converted-space">          </span>for (let j = 0; j &lt; pts.length; j++) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (v.distanceTo(pts[j]) &lt; minDistance) {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>tooClose = true</p>
+<p class="p1"><span class="Apple-converted-space">              </span>break</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (!tooClose) pts.push(v)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>})</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>pts.sort(() =&gt; Math.random() - 0.5)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return pts</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}, [scene])</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// --------------------------------------------------</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// CONTRIBUTION-BASED ORDER</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// --------------------------------------------------</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const points = useMemo(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (rawPoints.length === 0) return []</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const used = new Set&lt;number&gt;()</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const ordered: THREE.Vector3[] = []</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const getRandomUnused = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let idx = 0</p>
+<p class="p1"><span class="Apple-converted-space">      </span>do {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>idx = Math.floor(Math.random() * rawPoints.length)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} while (used.has(idx))</p>
+<p class="p1"><span class="Apple-converted-space">      </span>used.add(idx)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return rawPoints[idx]</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (const c of contributions) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// SINGLE → random</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (c.quantity === 1) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ordered.push(getRandomUnused())</p>
+<p class="p1"><span class="Apple-converted-space">        </span>continue</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// MULTI → cluster</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const anchorIndex = Math.floor(Math.random() * rawPoints.length)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const anchor = rawPoints[anchorIndex]</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const nearby = rawPoints</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.map((p, i) =&gt; ({ p, i, d: p.distanceToSquared(anchor) }))</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.sort((a, b) =&gt; a.d - b.d)</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>let added = 0</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (let i = 0; i &lt; nearby.length &amp;&amp; added &lt; c.quantity; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const idx = nearby[i].i</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!used.has(idx)) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>used.add(idx)</p>
+<p class="p1"><span class="Apple-converted-space">          </span>ordered.push(nearby[i].p)</p>
+<p class="p1"><span class="Apple-converted-space">          </span>added++</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>return ordered</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}, [rawPoints, contributions])</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// --------------------------------------------------</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>useFrame((state, delta) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!spinRef.current || !baseRef.current || !glowRef.current) return</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>spinRef.current.rotation.z = state.clock.elapsedTime * 0.02</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (lastPulseTriggerRef.current !== skullPulseTrigger) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>lastPulseTriggerRef.current = skullPulseTrigger</p>
+<p class="p1"><span class="Apple-converted-space">      </span>structurePulseRef.current = 1</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>structurePulseRef.current = Math.max(0, structurePulseRef.current - delta * 0.9)</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const targetCount = Math.min(points.length, 50000)</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (displayCountRef.current &lt; targetCount) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>displayCountRef.current += 6</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>let glowCount = 0</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (let i = 0; i &lt; displayCountRef.current &amp;&amp; i &lt; targetCount; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const p = points[i]</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const pulse = Math.sin(state.clock.elapsedTime * 0.8 + i) * 0.5 + 0.5</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const scale = 1 + pulse * 0.15</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>tempObject.position.copy(p)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>tempObject.scale.setScalar(scale * 0.9)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>tempObject.updateMatrix()</p>
+<p class="p1"><span class="Apple-converted-space">      </span>baseRef.current.setMatrixAt(i, tempObject.matrix)</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>tempColor.copy(baseColor).lerp(shimmerColor, pulse)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>baseRef.current.setColorAt(i, tempColor)</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// glow</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const glowStrength = pulse * 0.5 + structurePulseRef.current * 1.5</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (glowStrength &gt; 0.1) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tempObject.scale.setScalar(scale * 1.4)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tempObject.updateMatrix()</p>
+<p class="p1"><span class="Apple-converted-space">        </span>glowRef.current.setMatrixAt(glowCount, tempObject.matrix)</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>tempColor.copy(shimmerColor)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>glowRef.current.setColorAt(glowCount, tempColor)</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>glowCount++</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>baseRef.current.count = displayCountRef.current</p>
+<p class="p1"><span class="Apple-converted-space">    </span>glowRef.current.count = glowCount</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>baseRef.current.instanceMatrix.needsUpdate = true</p>
+<p class="p1"><span class="Apple-converted-space">    </span>glowRef.current.instanceMatrix.needsUpdate = true</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (baseRef.current.instanceColor) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>baseRef.current.instanceColor.needsUpdate = true</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (glowRef.current.instanceColor) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>glowRef.current.instanceColor.needsUpdate = true</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>})</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;group rotation={[Math.PI / 2, 0, 0]}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;group ref={spinRef}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;instancedMesh ref={baseRef} args={[undefined, undefined, 50000]}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;sphereGeometry args={[0.003, 20, 20]} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;meshPhysicalMaterial</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ref={baseMaterialRef}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>emissive="#3567f1"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>emissiveIntensity={0.7}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>roughness={0.4}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>metalness={0.7}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>vertexColors</p>
+<p class="p1"><span class="Apple-converted-space">          </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/instancedMesh&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;instancedMesh ref={glowRef} args={[undefined, undefined, 50000]}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;sphereGeometry args={[0.003, 20, 20]} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;meshBasicMaterial</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ref={glowMaterialRef}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transparent</p>
+<p class="p1"><span class="Apple-converted-space">            </span>opacity={0.5}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>blending={THREE.AdditiveBlending}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>vertexColors</p>
+<p class="p1"><span class="Apple-converted-space">          </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/instancedMesh&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/group&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/group&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>)</p>
+<p class="p1">}</p>
 </body>
 </html>
