@@ -1,6 +1,6 @@
 'use client'
 
-import { useGLTF } from '@react-three/drei'
+import { useGLTF, Text } from '@react-three/drei'
 import { useMemo, useRef, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
@@ -30,28 +30,26 @@ class SeededRandom {
   nextInt(max: number): number {
     return Math.floor(this.next() * max)
   }
-
-  shuffle<T>(arr: T[]): T[] {
-    const result = [...arr]
-    for (let i = result.length - 1; i > 0; i--) {
-      const j = this.nextInt(i + 1)
-      const tmp = result[i]
-      result[i] = result[j]
-      result[j] = tmp
-    }
-    return result
-  }
 }
 
 export default function Model({
   modelPath,
   contributions,
   skullPulseTrigger,
-  seed = 42, // deterministic seed (can be based on modelPath or user ID)
+  // NEW: labels map and label controls
+  showLabels = false,
+  labels,
+  labelSize = 0.01,
+  labelOffset = 0.005,
+  seed = 42, // deterministic seed (optional)
 }: {
   modelPath: string
   contributions: Contribution[]
   skullPulseTrigger: number
+  showLabels?: boolean
+  labels?: Record<string, string> // contributionId -> display name
+  labelSize?: number
+  labelOffset?: number
   seed?: number
 }) {
   const { scene } = useGLTF(modelPath)
@@ -66,12 +64,12 @@ export default function Model({
 
   const baseColor = useMemo(() => new THREE.Color('#1e3a8a'), [])
   const shimmerColor = useMemo(() => new THREE.Color('#7dd3fc'), [])
-  const contributionColor = useMemo(() => new THREE.Color('#ffffff'), [])
-  const farColor = useMemo(() => new THREE.Color('#0f1f4d'), [])
-
   const tempObject = useMemo(() => new THREE.Object3D(), [])
   const tempColor = useMemo(() => new THREE.Color(), [])
   const tempVec = useMemo(() => new THREE.Vector3(), [])
+
+  // Each point is now { p: Vector3, ownerId?: string }
+  type PointWithOwner = { p: THREE.Vector3; ownerId?: string }
 
   // --------------------------------------------------
   // AREA-WEIGHTED POINT SAMPLING (deterministic, world-space)
@@ -114,7 +112,7 @@ export default function Model({
     }
 
     // collect triangle areas for area-weighted sampling
-    const triangles: { a: THREE.Vector3; b: THREE.Vector3; c: THREE.Vector3; mesh: any }[] = []
+    const triangles: { a: THREE.Vector3; b: THREE.Vector3; c: THREE.Vector3 }[] = []
     let totalArea = 0
 
     scene.traverse((child: any) => {
@@ -123,7 +121,6 @@ export default function Model({
         const pos = child.geometry.attributes.position
         const indices = child.geometry.index
 
-        // if indexed geometry
         if (indices) {
           for (let i = 0; i < indices.count; i += 3) {
             const i0 = indices.getX(i)
@@ -144,23 +141,16 @@ export default function Model({
               pos.getZ(i2)
             ).applyMatrix4(child.matrixWorld)
 
-            // compute triangle area
             const ab = new THREE.Vector3().subVectors(b, a)
             const ac = new THREE.Vector3().subVectors(c, a)
             const area = ab.cross(ac).length() * 0.5
 
             if (area > 1e-8) {
-              triangles.push({
-                a: a.clone(),
-                b,
-                c,
-                mesh: child,
-              })
+              triangles.push({ a: a.clone(), b, c })
               totalArea += area
             }
           }
         } else {
-          // non-indexed: sample vertices directly
           for (let i = 0; i < pos.count; i++) {
             const v = tempVec
               .set(pos.getX(i), pos.getY(i), pos.getZ(i))
@@ -177,11 +167,9 @@ export default function Model({
 
     // area-weighted sample from triangles
     if (triangles.length > 0) {
-      // target: sample roughly one point per 0.001 units² of area (tune this)
       const targetSampleCount = Math.max(100, Math.floor(totalArea / 0.001))
 
       for (let s = 0; s < targetSampleCount; s++) {
-        // pick triangle weighted by area
         let r = prng.next() * totalArea
         let tri: { a: THREE.Vector3; b: THREE.Vector3; c: THREE.Vector3 } | null = null
         let cumArea = 0
@@ -198,7 +186,6 @@ export default function Model({
         }
         if (!tri) tri = triangles[triangles.length - 1]
 
-        // random point on triangle (barycentric)
         const r1 = Math.sqrt(prng.next())
         const r2 = prng.next()
         const u = 1 - r1
@@ -218,7 +205,6 @@ export default function Model({
       }
     }
 
-    // shuffle with seeded PRNG
     const prng2 = new SeededRandom(seed + 1)
     pts.sort(() => prng2.next() - 0.5)
 
@@ -226,24 +212,28 @@ export default function Model({
   }, [scene, seed])
 
   // --------------------------------------------------
-  // CONTRIBUTION-BASED ORDER (seeded, shuffled index pool)
+  // CONTRIBUTION-BASED ORDER -> returns PointWithOwner[]
   // --------------------------------------------------
-  const points = useMemo(() => {
+  const points = useMemo<PointWithOwner[]>(() => {
     if (rawPoints.length === 0) return []
 
     const prng = new SeededRandom(seed + 2)
-    const ordered: THREE.Vector3[] = []
+    const ordered: PointWithOwner[] = []
     const used = new Set<number>()
 
-    // create a shuffled index pool and a pointer to pop from
     const indices = rawPoints.map((_, i) => i)
-    indices.sort(() => prng.next() - 0.5)
+    // seed shuffle
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = prng.nextInt(i + 1)
+      const tmp = indices[i]
+      indices[i] = indices[j]
+      indices[j] = tmp
+    }
 
     let poolPos = 0
     const getNextUnusedIndexFromPool = () => {
       while (poolPos < indices.length && used.has(indices[poolPos])) poolPos++
       if (poolPos >= indices.length) {
-        // fallback: find any unused
         for (let k = 0; k < rawPoints.length; k++) {
           if (!used.has(k)) {
             used.add(k)
@@ -260,11 +250,10 @@ export default function Model({
     for (const c of contributions) {
       if (c.quantity === 1) {
         const idx = getNextUnusedIndexFromPool()
-        ordered.push(rawPoints[idx])
+        ordered.push({ p: rawPoints[idx], ownerId: c.id })
         continue
       }
 
-      // MULTI → cluster around an anchor
       let anchorIndex = prng.nextInt(rawPoints.length)
       if (poolPos < indices.length) {
         const candidate = indices[Math.min(poolPos, indices.length - 1)]
@@ -281,15 +270,14 @@ export default function Model({
         const idx = nearby[i].i
         if (!used.has(idx)) {
           used.add(idx)
-          ordered.push(nearby[i].p)
+          ordered.push({ p: nearby[i].p, ownerId: c.id })
           added++
         }
       }
 
-      // if cluster couldn't find enough, fill from pool
       while (added < c.quantity) {
         const idx = getNextUnusedIndexFromPool()
-        ordered.push(rawPoints[idx])
+        ordered.push({ p: rawPoints[idx], ownerId: c.id })
         added++
       }
     }
@@ -306,23 +294,21 @@ export default function Model({
     if (base?.instanceMatrix) {
       try {
         base.instanceMatrix.setUsage(THREE.DynamicDrawUsage)
-      } catch (e) {
-        // ignore if not supported
-      }
+      } catch (_) {}
       if (base.instanceColor) {
         try {
           base.instanceColor.setUsage(THREE.DynamicDrawUsage)
-        } catch (e) {}
+        } catch (_) {}
       }
     }
     if (glow?.instanceMatrix) {
       try {
         glow.instanceMatrix.setUsage(THREE.DynamicDrawUsage)
-      } catch (e) {}
+      } catch (_) {}
       if (glow.instanceColor) {
         try {
           glow.instanceColor.setUsage(THREE.DynamicDrawUsage)
-        } catch (e) {}
+        } catch (_) {}
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -348,7 +334,6 @@ export default function Model({
 
     const targetCount = Math.min(points.length, 50000)
 
-    // grow/shrink display count smoothly (clamped)
     if (displayCountRef.current < targetCount) {
       displayCountRef.current = Math.min(displayCountRef.current + 6, targetCount)
     } else if (displayCountRef.current > targetCount) {
@@ -358,7 +343,7 @@ export default function Model({
     let glowCount = 0
 
     for (let i = 0; i < displayCountRef.current && i < targetCount; i++) {
-      const p = points[i]
+      const p = points[i].p
 
       const pulse = Math.sin(state.clock.elapsedTime * 0.8 + i) * 0.5 + 0.5
       const scale = 1 + pulse * 0.15
@@ -419,6 +404,28 @@ export default function Model({
             vertexColors
           />
         </instancedMesh>
+
+        {/* Labels: render only if showLabels=true and a label exists for the ownerId */}
+        {showLabels &&
+          points.slice(0, displayCountRef.current).map((pt, i) => {
+            const owner = pt.ownerId
+            const name = owner ? labels?.[owner] : undefined
+            if (!name) return null
+            // small offset in Z so the text sits slightly above the orb
+            return (
+              <Text
+                key={`label-${i}-${owner}`}
+                position={[pt.p.x, pt.p.y, pt.p.z + labelOffset]}
+                fontSize={labelSize}
+                color="#ffffff"
+                anchorX="center"
+                anchorY="bottom"
+                depthWrite={false}
+              >
+                {name}
+              </Text>
+            )
+          })}
       </group>
     </group>
   )
